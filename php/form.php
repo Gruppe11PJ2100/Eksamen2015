@@ -50,7 +50,7 @@ $result = mysqli_query($conn, $sql1);
     	if($row["is_free"] == 'true'){
 
 
-    		$sql = "UPDATE $day SET reserved_email='$email$string', is_free='false' WHERE id=$id";
+    		$sql = "UPDATE $day SET reserved_email='$email$string', is_free='false' WHERE id=$id AND '$email$string' IN(SELECT * FROM email)";
 
 			if ($conn->query($sql) === TRUE) {
   				  echo "Record updated successfully";
