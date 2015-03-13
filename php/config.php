@@ -1,6 +1,6 @@
 <?php
 
-$db_adress = "127.0.0.1";
+$db_adress = "127.0.0.1:3307";
 $db_name = "myDB";
 $db_user =  "root";
 $db_pass = "";

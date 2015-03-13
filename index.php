@@ -60,6 +60,7 @@
    			$email = test_input($_POST["email"]);
    			$selected_radio = $_POST['members'];
 			$day = test_input($_POST["day"]);
+			$prosjektor = $_POST["prosjektor"];
 
 
 		}
@@ -75,8 +76,6 @@
 		
 		if (isset($_POST['submit'])){
 
-			echo " " . $day;
-
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
 	
@@ -87,7 +86,7 @@
     			echo "Error: " . $sql . "<br>" . $conn->error;
 			}	
 
-			
+			echo "<br>" . $prosjektor;
 
 			$sql = "SELECT * FROM $day";
 			$result = mysqli_query($conn, $sql);
@@ -95,13 +94,12 @@
 			if (mysqli_num_rows($result) > 0) {
     			// output data of each row
     			while($row = mysqli_fetch_assoc($result)) {
-    				echo "INTD: " . $row["is_free"] .  /*" Har Prosjektor: " . $row["has_beamer"] . "   E-Mail:   " . $row["reserved_email"] . */"<br>";
 
     				$id = $row["id"];
 
-    				if($row["is_free"] == 'true'){
+    				if($row["is_free"] == 'true' && $row["antall_medlemmer"] == $selected_radio && $row["prosjektor"] == $prosjektor){
 
-    					$update = "UPDATE $day SET reserved_email='$email', is_free='false' where id=$id";
+    					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
 
     					if ($conn->query($update) === TRUE) {
     						echo "New record created successfully";
@@ -226,9 +224,9 @@
 										<div class="12u">
  										  Rom med prosjektor? 
  										  <p>
-  											<input type="radio" name="prosjektor" value="Yes."> Ja 
+  											<input type="radio" name="prosjektor" value="true"> Ja 
   											&nbsp;
-  										 	<input type="radio" name="prosjektor" value="No."> Nei 
+  										 	<input type="radio" name="prosjektor" value="false"> Nei 
         									<p>
 									</div>
 										<div class="row.uniform ">
