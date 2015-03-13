@@ -1,6 +1,7 @@
 <!--
 	Index Template - Olaipai
 	facebook.com/olaipai | @olaipai
+	edvinpai too
 -->
 
 <!DOCTYPE HTML>
@@ -86,10 +87,12 @@
     			echo "Error: " . $sql . "<br>" . $conn->error;
 			}	
 
-			echo "<br>" . $prosjektor;
+			echo "<br>" . $prosjektor . $selected_radio . $day . $email;
 
-			$sql = "SELECT * FROM $day";
+			$sql = "SELECT * FROM $day ORDER BY antall";
 			$result = mysqli_query($conn, $sql);
+			$perfect_match = false;
+
 
 			if (mysqli_num_rows($result) > 0) {
     			// output data of each row
@@ -97,17 +100,68 @@
 
     				$id = $row["id"];
 
-    				if($row["is_free"] == 'true' && $row["antall_medlemmer"] == $selected_radio && $row["prosjektor"] == $prosjektor){
+    				if($row["is_free"] == 'true' && $row["antall"] == $selected_radio && $row["prosjektor"] == $prosjektor){
 
     					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
 
     					if ($conn->query($update) === TRUE) {
-    						echo "New record created successfully";
+    						echo "New record created successfully DID IT WORK?";
+    						$perfect_match = true;
+
 						} else {
     						echo "Error: " . $update . "<br>" . $conn->error;
 						}
 						break;
     				}
+
+    			}
+
+    			$newSql = "SELECT * FROM $day ORDER BY antall";
+    			$result = $conn->query($newSql);
+
+
+    			while($row = $result->fetch_assoc()){
+
+    				$amount = $row["antall"];
+
+    				$id2 = $row["id"];
+
+    				if($prosjektor == "false"){
+
+    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
+
+    						echo "made it here yay";
+
+    						$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+
+    						if ($conn->query($update2) === TRUE) {
+    							echo "<br>New record created successfully OMG";
+
+							} else {
+    							echo "Error: " . $update2 . "<br>" . $conn->error;
+							}
+							break;
+    					}
+
+	    			} else {
+
+	    				if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
+
+	    					echo "must have prosjektor";
+
+    						$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+
+    						if ($conn->query($update2) === TRUE) {
+    							echo "<br>New record created successfully OMG";
+
+							} else {
+    							echo "Error: " . $update2 . "<br>" . $conn->error;
+							}
+							break;
+	    				}
+
+	    			}
+
     			}
 
 			} else {
@@ -153,7 +207,8 @@
 									
 								<a href="#Qreservation" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
-									<img src="images/logo.jpg" height="600" width="850" alt="" />
+									<img src="/images/logo.jpg" height="600" width="850" alt="" />
+
 								</a>
 								
 							</article>
@@ -199,23 +254,23 @@
 									<div class="row">
 										<div class="2u">
 										<label for="monday">Mandag</label>
-        									<input type="checkbox" name="day" value="mon" id="monday">
+        									<input type="radio" name="day" value="mon" id="monday" checked>
 										</div>
 										<div class="2u">
 										<label for="tuesday">Tirsdag</label>
-        									<input type="checkbox" name="day" value="tue" id="tuesday">
+        									<input type="radio" name="day" value="tue" id="tuesday">
 										</div>
 										<div class="2u">
 										<label for="wednesday">Onsdag</label>
-        									<input type="checkbox" name="day" value="wed" id="wednesday">
+        									<input type="radio" name="day" value="wed" id="wednesday">
         									</div>
         								<div class="2u">
 										<label for="thursday">Torsdag</label> 
-        									<input type="checkbox" name="day" value="thu" id="thursday">	
+        									<input type="radio" name="day" value="thu" id="thursday">	
 											</div>
 										<div class="2u">
         								<label for="friday">Fredag</label>		
-        									<input type="checkbox" name="day" value="fri" id="friday">	
+        									<input type="radio" name="day" value="fri" id="friday">	
 											</div>
 										</div>
 										
@@ -226,7 +281,7 @@
  										  <p>
   											<input type="radio" name="prosjektor" value="true"> Ja 
   											&nbsp;
-  										 	<input type="radio" name="prosjektor" value="false"> Nei 
+  										 	<input type="radio" name="prosjektor" value="false" checked> Nei 
         									<p>
 									</div>
 										<div class="row.uniform ">
