@@ -54,16 +54,17 @@
 		<?php
 
 		// define variables and set to empty values
-		$name = $email = $day = $id = $id2 = $amount = $prosjektor = "";
+		$name = $email = $day = $id = $id2 = $amount = "";
+
+		$prosjektor = 'false';
 
 		$perfect_match = null;
 		$found_a_match = false;
 
-
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
    			$name = test_input($_POST["name"]);
    			$email = test_input($_POST["email"]);
-   			$selected_radio = $_POST['members'];
+   			$selected_radio = $_POST["members"];
 			$day = test_input($_POST["day"]);
 			$prosjektor = $_POST["prosjektor"];
 
@@ -80,6 +81,8 @@
 		require 'php/config.php';
 		
 		if (isset($_POST['submit'])){
+
+			echo "" . $prosjektor;
 
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
@@ -174,49 +177,49 @@
 			} else {
  		  		 echo "0 results";
 			}
-		}
 
- // START mailing part of the script
+// START mailing part of the script
 $takk = $dittrom1 = $dittrom2 = $default = "";
-
 $takk = "Takk for din reservasjon " . $name . "<br>";
 
-	if($perfect_match && $found_a_match){
+if($perfect_match && $found_a_match){
+
 		$dittrom1 = "Ditt rom: " . $id . " er reservert på " . $day . "<br>";
 
 	} else if(!$perfect_match && $found_a_match){
+
 		$dittrom2 = "Ditt rom: " . $id2 . " er reservert på " . $day . "<br>";
 
 	} else {
-		$default = "Ingen ledige rom med deres spesifikasjoner<br>";
 
-												}
+		$default = "Ingen ledige rom med deres spesifikasjoner<br>";
+}
+
 
 require 'PHPMailer5/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.google.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'gruppe11pj2100@gmail.com';                 // SMTP username
-$mail->Password = '&%{I952T/1~=9@e';                           // SMTP password
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
-
+$mail->isSMTP();                                     	// Set mailer to use SMTP
+$mail->Host = 'smtp.google.com';  						// Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               	// Enable SMTP authentication
+$mail->Username = 'gruppe11pj2100@gmail.com';           // SMTP username
+$mail->Password = '&%{I952T/1~=9@e';                    // SMTP password
+$mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                                      // TCP port to connect to
 $mail->From = 'gruppe11pj2100@gmail.com';
 $mail->FromName = 'Westerdals';
-$mail->addAddress('gruppe11pj2100@gmail.com', 'Test User');     // Add a recipient
+$mail->addAddress('gruppe11pj2100@gmail.com', 'Test User');  // Add a recipient
 $mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
 $mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
 $mail->addCC('gruppe11pj2100@gmail.com');
 $mail->addBCC('gruppe11pj2100@gmail.com');
 
-
-$mail->isHTML(true);                                  // Set email format to HTML
+$mail->isHTML(true);
 
 $mail->Subject = "Takk for din reservasjon " . $name . "<br>";
 $mail->Body    = "" . $default . $dittrom1 . $dittrom2;
+
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
@@ -224,6 +227,10 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
+
+} // curly bracket from the if submitt button.
+
+
 
 		$conn->close();	
 
@@ -236,7 +243,6 @@ if(!$mail->send()) {
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
-						<a href="#reservation" class="icon fa-laptop"><span>Reservasjon</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
 						<a href="#confirm" class="icon fa-database"><span>Bekreft</span></a>
 						<!--<a href="#" class="icon fa-check-circle-o"><span> Bekreftet</span></a>-->
@@ -266,16 +272,7 @@ if(!$mail->send()) {
 								
 							</article>
 
-						<!-- quick reservation -->
-						
-							<article id="reservation" class="panel">
-							<header>
-								<h2> Reservasjon </h2>
-								<br>
-								<h4>Velg datoen under ved å klikke for rom reservasjon den dagen</h4>
-							</header>
-									<div id='calendar'></div>
-							</article>	
+
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
@@ -305,23 +302,23 @@ if(!$mail->send()) {
 									<div class="row">
 										<div class="2u">
 										<label for="monday">Mandag</label>
-        									<input type="radio" name="day" value="mon" id="monday" checked>
+        									<input type="radio" name="day" value="Mandag" id="monday" checked>
 										</div>
 										<div class="2u">
 										<label for="tuesday">Tirsdag</label>
-        									<input type="radio" name="day" value="tue" id="tuesday">
+        									<input type="radio" name="day" value="Tirsdag" id="tuesday">
 										</div>
 										<div class="2u">
 										<label for="wednesday">Onsdag</label>
-        									<input type="radio" name="day" value="wed" id="wednesday">
+        									<input type="radio" name="day" value="Onsdag" id="wednesday">
         									</div>
         								<div class="2u">
 										<label for="thursday">Torsdag</label> 
-        									<input type="radio" name="day" value="thu" id="thursday">	
+        									<input type="radio" name="day" value="Torsdag" id="thursday">	
 											</div>
 										<div class="2u">
         								<label for="friday">Fredag</label>		
-        									<input type="radio" name="day" value="fri" id="friday">	
+        									<input type="radio" name="day" value="Fredag" id="friday">	
 											</div>
 										</div>
 										
@@ -332,7 +329,7 @@ if(!$mail->send()) {
  										  <p>
   											<input type="radio" name="prosjektor" value="true"> Ja 
   											&nbsp;
-  										 	<input type="radio" name="prosjektor" value="false" checked> Nei 
+  										 	<input type="radio" name="prosjektor" value="false" checked> Nei
         									<p>
 									</div>
 										<div class="row.uniform ">
@@ -343,7 +340,7 @@ if(!$mail->send()) {
 												<input type="email" name="email" placeholder="Elektronisk Mail" />
 												&nbsp;
 											<div class="5u">
-												<input type="submit" name="submit" value="Bekreft" />												
+												<input type="submit" name="submit" value="Bekreft"  />												
 											</div>
 										
 										</div>
@@ -351,50 +348,75 @@ if(!$mail->send()) {
 								</section>
 							</article>
 
+						
 						<!-- confirm -->
-						<article id="confirm" class="panel">
+							<article id="confirm" class="panel">
 								<header>
-									<h2>Bekreft rom reservasjon</h2>
-								</header> Din reservasjon
+									<h2>Kvittering</h2>
+								</header> <h6>  </h6>
+								<form action="../form.php" method="post">
 									<div>
+
+										<div class="row">
+											<div class="6u"> 
+												<h9> Navn: </h9>
+												<?php echo "" . $name; ?>
+												</div>
+											</div>
 										<div class="row">
 											<div class="6u">
+												<h9> Medlemmer: </h9>
+												<?php echo "" . $selected_radio; ?>
+												</div>
+										</div>
+										<div class="row">
+											<div class="6u"> 
+												<h9> Rom nr: </h9>
 												<?php 
-
-												echo $takk;
-
 												if($perfect_match && $found_a_match){
-													echo $dittrom1;
 
-												} else if(!$perfect_match && $found_a_match){
-													echo $dittrom2;
+													echo "" . $id;
 
-												} else {
-													echo $default;
+													} else if(!$perfect_match && $found_a_match){
 
+													echo "" . $id2;
+
+													} else {
+
+													echo "Ingen ledige rom med deres spesifikasjoner";
+													
 												}
-												echo "Email sendt til: " . $email . "<br>";
 
-
-												?>
-
-
-
+												 ?>
+												</div>
 											</div>
+										<div class="row">
+										<div class="6u">
+												<h9> Hvilke dager: </h9>
+												<?php echo "" . $day; ?>
+											</div>
+										</div>
+										<div class="row">
 											<div class="6u">
-												
-											</div>
+												<h9> Prosjektor: </h9>
+												<?php echo "" . $prosjektor; ?>
+												</div>
+											
 										</div>
 										<div class="row">
+											<div class="6u"> 
+												<h9>Elektronisk post: </h9>
+												<?php echo "" . $email; ?>
+												</div>
+
 										</div>
 										<div class="row">
-										</div>
-										<div class="row">
-											<div class="12u">
-												
-											</div>
+											
+											
+												</div>
 										</div>
 									</div>
+								</form>
 							</article>
 					</div>
 				<!-- Footer -->
@@ -404,7 +426,8 @@ if(!$mail->send()) {
 						</ul>
 					</div>
 	
-			</div<
+			</div>
+
 	</body>
 
 </html>

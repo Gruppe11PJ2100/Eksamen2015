@@ -23,18 +23,7 @@
 		<script src="js/moment.min.js"></script>
 		<script src="js/fullcalendar.min.js"></script>
 		<script>
-				$(document).ready(function() {
-   				 $('#calendar').fullCalendar({
-
-      				weekends: false,
-      				editable: true,
-      				dayClick: function(date, jsEvent, view) {
-        		alert('Du har valgt '  +  date.format());
-        		$(this).css('background-color', 'green');
-
-    }
-    			})
-			});
+			
 </script>
 		<noscript>
 		<!-- Calendar -->
@@ -55,10 +44,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
-						<a href="#reservation" class="icon fa-laptop"><span>Reservasjon</span></a>
+						
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					<!--	<a href="#confirm" class="icon fa-database"><span>Bekreft</span></a>
-						<a href="#" class="icon fa-check-circle-o"><span> Bekreftet</span></a>-->
+					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
+						
 					</nav>
 
 				<!-- Main -->
@@ -70,30 +59,14 @@
 									<h1>Velkommen</h1>
 									<p>Rom reservasjon</p>
 								</header>
-								<a href="#reservation" class="jumplink pic">
-									<span class="arrow icon fa-chevron-right"><span>Reservasjon</span></span>
 
-								</a>
-								<br/>
-								
-									
 								<a href="#Qreservation" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
 									<img src="images/logo.jpg" height="600" width="850" alt="" />
 								</a>
 								
 							</article>
-
-						<!-- quick reservation -->
-						
-							<article id="reservation" class="panel">
-							<header>
-								<h2> Reservasjon </h2>
-								<br>
-								<h4>Velg datoen under ved å klikke for rom reservasjon den dagen</h4>
-							</header>
-									<div id='calendar'></div>
-							</article>	
+	
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
@@ -171,33 +144,54 @@
 							</article>
 
 						<!-- confirm -->
-						<!--	<article id="confirm" class="panel">
+							<article id="confirm" class="panel">
 								<header>
-									<h2>Bekreft rom reservasjon</h2>
-								</header> Fyll inn under
+									<h2>Kvittering</h2>
+								</header> <h6>  </h6>
 								<form action="../form.php" method="post">
 									<div>
+
+										<div class="row">
+											<div class="6u"> 
+												<h9> Navn </h9>
+												<!-- Sssenpai -->
+												</div>
+											</div>
 										<div class="row">
 											<div class="6u">
-												<input type="text" name="name" placeholder="Navn" />
+												<h9> Medlemmer </h9>
+												<!-- Insert PHP medlemmer her -->
 											</div>
+										</div>
+										<div class="row">
+										<div class="6u">
+												<h9> Hvilke dager </h9>
+												<!-- Work your magic Edvin -->
+											</div>
+										</div>
+										<div class="row">
 											<div class="6u">
-												<input type="email" name="email" placeholder="Elektronisk Mail" />
-											</div>
+												<h9> Prosjektor </h9>
+												<!-- Show me how you work it -->
+												</div>
+											
 										</div>
 										<div class="row">
+											<div class="6u"> 
+												<h9>Elektronisk post</h9>
+												<!-- Edvin, the true king -->
+												</div>
+
 										</div>
 										<div class="row">
-										</div>
-										<div class="row">
-											<div class="12u">
-												<input type="submit" value="Bekreft" />
-											</div>
+											
+											
+												</div>
 										</div>
 									</div>
 								</form>
 							</article>
--->
+
 					</div>
 		
 				<!-- Footer -->
