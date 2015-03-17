@@ -54,7 +54,11 @@
 		<?php
 
 		// define variables and set to empty values
-		$name = $email = $day =  "";
+		$name = $email = $day = $id = $id2 = $amount = $prosjektor = "";
+
+		$perfect_match = null;
+		$found_a_match = false;
+
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
    			$name = test_input($_POST["name"]);
@@ -91,7 +95,6 @@
 
 			$sql = "SELECT * FROM $day ORDER BY antall";
 			$result = mysqli_query($conn, $sql);
-			$perfect_match = false;
 
 
 			if (mysqli_num_rows($result) > 0) {
@@ -105,13 +108,16 @@
     					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
 
     					if ($conn->query($update) === TRUE) {
-    						echo "New record created successfully DID IT WORK?";
+    						echo "New record created successfully perfect_match";
     						$perfect_match = true;
+    						$found_a_match = true;
 
 						} else {
     						echo "Error: " . $update . "<br>" . $conn->error;
 						}
 						break;
+    				} else  {
+    					$perfect_match = false;
     				}
 
     			}
@@ -119,58 +125,105 @@
     			$newSql = "SELECT * FROM $day ORDER BY antall";
     			$result = $conn->query($newSql);
 
+    			if($perfect_match == false){
 
-    			while($row = $result->fetch_assoc()){
+    				while($row = $result->fetch_assoc()){
 
-    				$amount = $row["antall"];
+    					$amount = $row["antall"];
 
-    				$id2 = $row["id"];
+    					$id2 = $row["id"];
 
-    				if($prosjektor == "false"){
+    					if($prosjektor == "false"){
 
-    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
+    						if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
 
-    						echo "made it here yay";
+    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
 
-    						$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+    							if ($conn->query($update2) === TRUE) {
+    								echo "<br>New record created successfully med et annet antall";
+    								$found_a_match = true;
 
-    						if ($conn->query($update2) === TRUE) {
-    							echo "<br>New record created successfully OMG";
+								} else {
+    								echo "Error: " . $update2 . "<br>" . $conn->error;
+								}
+								break;
+    						}
 
-							} else {
-    							echo "Error: " . $update2 . "<br>" . $conn->error;
-							}
-							break;
-    					}
+	    				} else {
 
-	    			} else {
+	    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
 
-	    				if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
+	    						echo "must have prosjektor";
 
-	    					echo "must have prosjektor";
+    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
 
-    						$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+    							if ($conn->query($update2) === TRUE) {
+    								echo "<br>New record created successfully med prosjektor";
+    								$found_a_match = true;
 
-    						if ($conn->query($update2) === TRUE) {
-    							echo "<br>New record created successfully OMG";
+								} else {
+    								echo "Error: " . $update2 . "<br>" . $conn->error;
+								}
+								break;
+	    					}
 
-							} else {
-    							echo "Error: " . $update2 . "<br>" . $conn->error;
-							}
-							break;
 	    				}
 
-	    			}
-
+    				}
     			}
-
 			} else {
  		  		 echo "0 results";
 			}
 		}
 
+ // START mailing part of the script
+$takk = $dittrom1 = $dittrom2 = $default = "";
 
-		
+$takk = "Takk for din reservasjon " . $name . "<br>";
+
+	if($perfect_match && $found_a_match){
+		$dittrom1 = "Ditt rom: " . $id . " er reservert på " . $day . "<br>";
+
+	} else if(!$perfect_match && $found_a_match){
+		$dittrom2 = "Ditt rom: " . $id2 . " er reservert på " . $day . "<br>";
+
+	} else {
+		$default = "Ingen ledige rom med deres spesifikasjoner<br>";
+
+												}
+
+require 'PHPMailer5/PHPMailerAutoload.php';
+
+$mail = new PHPMailer;
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.google.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'gruppe11pj2100@gmail.com';                 // SMTP username
+$mail->Password = '&%{I952T/1~=9@e';                           // SMTP password
+$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                                    // TCP port to connect to
+
+$mail->From = 'gruppe11pj2100@gmail.com';
+$mail->FromName = 'Westerdals';
+$mail->addAddress('gruppe11pj2100@gmail.com', 'Test User');     // Add a recipient
+$mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
+$mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
+$mail->addCC('gruppe11pj2100@gmail.com');
+$mail->addBCC('gruppe11pj2100@gmail.com');
+
+
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = "Takk for din reservasjon " . $name . "<br>";
+$mail->Body    = "" . $default . $dittrom1 . $dittrom2;
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
 
 		$conn->close();	
 
@@ -185,8 +238,8 @@
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#reservation" class="icon fa-laptop"><span>Reservasjon</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					<!--	<a href="#confirm" class="icon fa-database"><span>Bekreft</span></a>
-						<a href="#" class="icon fa-check-circle-o"><span> Bekreftet</span></a>-->
+						<a href="#confirm" class="icon fa-database"><span>Bekreft</span></a>
+						<!--<a href="#" class="icon fa-check-circle-o"><span> Bekreftet</span></a>-->
 					</nav>
 
 				<!-- Main -->
@@ -229,9 +282,7 @@
 									<h2>Hurtig Reservasjon</h2>
 								</header>
 								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. 
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
-									luctus elit eget interdum.
+									Velg antall medlemmer og hvilken dag dere vil ha grupperom, eventuellt prosjektor hvis dere trenger det.
 								</p>
 								<section>
 									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -286,11 +337,13 @@
 									</div>
 										<div class="row.uniform ">
 											<div class="9u">
+												Navn:
 												<input type="text" name="name" placeholder="Navn" />
+												Email:
 												<input type="email" name="email" placeholder="Elektronisk Mail" />
 												&nbsp;
 											<div class="5u">
-												<input type="submit" name="submit" value="Bekreft" />
+												<input type="submit" name="submit" value="Bekreft" />												
 											</div>
 										
 										</div>
@@ -299,18 +352,37 @@
 							</article>
 
 						<!-- confirm -->
-						<!--	<article id="confirm" class="panel">
+						<article id="confirm" class="panel">
 								<header>
 									<h2>Bekreft rom reservasjon</h2>
-								</header> Fyll inn under
-								<form action="../form.php" method="post">
+								</header> Din reservasjon
 									<div>
 										<div class="row">
 											<div class="6u">
-												<input type="text" name="name" placeholder="Navn" />
+												<?php 
+
+												echo $takk;
+
+												if($perfect_match && $found_a_match){
+													echo $dittrom1;
+
+												} else if(!$perfect_match && $found_a_match){
+													echo $dittrom2;
+
+												} else {
+													echo $default;
+
+												}
+												echo "Email sendt til: " . $email . "<br>";
+
+
+												?>
+
+
+
 											</div>
 											<div class="6u">
-												<input type="email" name="email" placeholder="Elektronisk Mail" />
+												
 											</div>
 										</div>
 										<div class="row">
@@ -319,15 +391,12 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input type="submit" value="Bekreft" />
+												
 											</div>
 										</div>
 									</div>
-								</form>
 							</article>
--->
 					</div>
-		
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
