@@ -1,9 +1,3 @@
-<!--
-	Index Template - Olaipai
-	facebook.com/olaipai | @olaipai
-	edvinpai too
--->
-
 <!DOCTYPE HTML>
 
 <html>
@@ -16,28 +10,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/init.js"></script>
-		<!-- Calendar -->
-			<link href="css/fullcalendar.css" rel='stylesheet' />
-			<link href="js/lang-all.js">
-			<link href="css/fullcalendar.print.css" rel='stylesheet' media='print' />
-		<script src="js/calendar/jquery.min.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/fullcalendar.min.js"></script>
-		<script>
-				$(document).ready(function() {
-   				 $('#calendar').fullCalendar({
 
-      				weekends: false,
-      				editable: true,
-      				dayClick: function(date, jsEvent, view) {
-        		alert('Du har valgt '  +  date.format());
-        		$(this).css('background-color', 'green');
-
-    }
-    			})
-			});
-
-</script>
 		<noscript>
 		<!-- Calendar -->
 		
@@ -50,16 +23,6 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
 		<?php 
-		/*
-		setcookie("name", "", time() +  60 * 60 * 24, "/");
-		setcookie("email", "", time() +  60 * 60 * 24, "/");
-		setcookie("members", "", time() +  60 * 60 * 24, "/");
-		setcookie("day", "", time() +  60 * 60 * 24, "/");
-		setcookie("prosjektor", "", time() +  60 * 60 * 24, "/");
-		setcookie("id", "", time() +  60 * 60 * 24, "/");
-		setcookie("id2", "", time() +  60 * 60 * 24, "/");
-
-		*/
 
 		setcookie("perfect_match", 0, time() +  60 * 60 * 24, "/");
 		setcookie("found_a_match", 0, time() +  60 * 60 * 24, "/");
@@ -69,10 +32,9 @@
 	</head>
 	<body>
 
-
 		<?php
 
-
+		// Commented out the echo, used for debugging only
 
 		// define variables and set to empty values
 		$name = $email = $day = $id = $id2 = $amount = "";
@@ -116,15 +78,15 @@
 
 
 			if ($conn->query($sql) === TRUE) {
-    			echo "New record created successfully";
+    			//echo "New record created successfully";
 			} else {
-    			echo "Error: " . $sql . "<br>" . $conn->error;
+    			//echo "Error: " . $sql . "<br>" . $conn->error;
 			}	
 
 
 			$sql2 = "SELECT email FROM $day WHERE email='$email';";
 			$res = mysqli_query($conn, $sql2);
-			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
+			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
 				$allready_ordered = false;
 			} else {
@@ -149,12 +111,12 @@
     					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
 
     					if ($conn->query($update) === TRUE) {
-    						echo "New record created successfully perfect_match";
+    						//echo "New record created successfully perfect_match";
     						$perfect_match = true;
     						$found_a_match = true;
 
 						} else {
-    						echo "Error: " . $update . "<br>" . $conn->error;
+    						//echo "Error: " . $update . "<br>" . $conn->error;
 						}
 						break;
     				} else  {
@@ -181,11 +143,11 @@
     							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
 
     							if ($conn->query($update2) === TRUE) {
-    								echo "<br>New record created successfully med et annet antall";
+    								//echo "<br>New record created successfully med et annet antall";
     								$found_a_match = true;
 
 								} else {
-    								echo "Error: " . $update2 . "<br>" . $conn->error;
+    								//echo "Error: " . $update2 . "<br>" . $conn->error;
 								}
 								break;
     						}
@@ -194,16 +156,16 @@
 
 	    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
 
-	    						echo "must have prosjektor";
+	    						//echo "must have prosjektor";
 
     							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
 
     							if ($conn->query($update2) === TRUE) {
-    								echo "<br>New record created successfully med prosjektor";
+    								//echo "<br>New record created successfully med prosjektor";
     								$found_a_match = true;
 
 								} else {
-    								echo "Error: " . $update2 . "<br>" . $conn->error;
+    								//echo "Error: " . $update2 . "<br>" . $conn->error;
 								}
 								break;
 	    					}
@@ -213,12 +175,12 @@
     				}
     			}
 			} else {
- 		  		 echo "0 results";
+ 		  		 //echo "0 results";
 			}
 
 // START mailing part of the script
 $takk = $dittrom1 = $dittrom2 = $default = "";
-$takk = "Takk for din reservasjon " . $name . "<br>";
+$takk = "Takk for din reservasjon " . $name;
 
 if($perfect_match && $found_a_match){
 
@@ -255,7 +217,7 @@ $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption
 $mail->Port = 465;                                      // TCP port to connect to
 $mail->From = 'gruppe11pj2100@gmail.com';
 $mail->FromName = 'Westerdals';
-$mail->addAddress('$email', '$name');  // Add a recipient
+$mail->addAddress($email, '$name');  // Add a recipient
 $mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
 $mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
 $mail->addCC('gruppe11pj2100@gmail.com');
@@ -263,19 +225,21 @@ $mail->addBCC('gruppe11pj2100@gmail.com');
 
 $mail->isHTML(true);
 
-$mail->Subject = "Takk for din reservasjon " . $name . "<br>";
+$mail->Subject = "Takk for din reservasjon " . $name;
 $mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
 
 
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-	echo '<script type="text/javascript">alert("Melding har blitt sendt til din email");</script>';
+if(!$allready_ordered){
+
+	if(!$mail->send()) {
+   	 	echo 'Message could not be sent.';
+    	echo 'Mailer Error: ' . $mail->ErrorInfo;
+	} else {
+		echo "Melding Sendt";
 }
 
 
-if(!$allready_ordered){
+
 	header('Location: #confirm');  //Redirect to recipt
 
 }
@@ -287,7 +251,7 @@ if(!$allready_ordered){
 		$conn->close();	
 
 
-	?>
+?>
 
 		<!-- Wrapper-->
 			<div id="wrapper">
@@ -296,8 +260,8 @@ if(!$allready_ordered){
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-						<a href="#confirm" class="icon fa-database"><span>Bekreft</span></a>
-						<!--<a href="#" class="icon fa-check-circle-o"><span> Bekreftet</span></a>-->
+						<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
+						
 					</nav>
 
 				<!-- Main -->
@@ -305,108 +269,116 @@ if(!$allready_ordered){
 						
 						<!-- Home -->
 							<article id="main" class="panel">
+								<center>
 								<header>
 									<h1>Velkommen</h1>
 									<p>Rom reservasjon</p>
 								</header>
-								<a href="#reservation" class="jumplink pic">
-									<span class="arrow icon fa-chevron-right"><span>Reservasjon</span></span>
-
-								</a>
-								<br/>
 								
-									
+								
 								<a href="#Qreservation" class="jumplink pic">
+									<img src="images/logo.jpg" height="600" width="850" alt="" />
 									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
-									<img src="/images/logo.jpg" height="600" width="850" alt="" />
-
+									</center>
 								</a>
 								
 							</article>
-
-
+	
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-									<h2>Hurtig Reservasjon</h2>
+									<center><h2>Reservasjon</h2></center>
 								</header>
 								<p>
-									Velg antall medlemmer og hvilken dag dere vil ha grupperom, eventuellt prosjektor hvis dere trenger det.
+									Velg antall medlemmer og hvilken dag dere vil ha grupperom.
 								</p>
 								<section>
-									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+								<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 									<div class="row">
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" value="2" id="member-1" class="member-input" checked>
        										<label for="member-1" class="member-label">2 medlemmer</label>
+       										</label>
 										</div>
 										
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" value="3" id="member-2" class="member-input">
         									<label for="member-2" class="member-label">3 medlemmer</label>
+        									</label>
 										</div>
 										
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" value="4" id="member-3" class="member-input">
         									<label for="member-3" class="member-label first">4 medlemmer</label>
+        									</label>
 										</div>
 									</div>
 									<div class="row">
 										<div class="2u">
+										<label>
 										<label for="monday">Mandag</label>
         									<input type="radio" name="day" value="Mandag" id="monday" checked>
+        									</label>
 										</div>
 										<div class="2u">
+										<label>
 										<label for="tuesday">Tirsdag</label>
         									<input type="radio" name="day" value="Tirsdag" id="tuesday">
+        									</label>
 										</div>
 										<div class="2u">
+										<label>
 										<label for="wednesday">Onsdag</label>
         									<input type="radio" name="day" value="Onsdag" id="wednesday">
+        									</label>
         									</div>
         								<div class="2u">
+        								<label>
 										<label for="thursday">Torsdag</label> 
         									<input type="radio" name="day" value="Torsdag" id="thursday">	
+        									</label>
 											</div>
 										<div class="2u">
+										<label>
         								<label for="friday">Fredag</label>		
         									<input type="radio" name="day" value="Fredag" id="friday">	
+        									</label>
 											</div>
 										</div>
 										
 									
-									<div class="row">
-										<div class="12u">
+									<div class="fieldgroup">
+										<div class="4u">
+										<form action="../form.php" method="post">
  										  Rom med prosjektor? 
  										  <p>
   											<input type="radio" name="prosjektor" value="true"> Ja 
-  											&nbsp;
-  										 	<input type="radio" name="prosjektor" value="false" checked> Nei
+  										 	<input type="radio" name="prosjektor" value="false" checked> Nei 
         									<p>
+
 									</div>
 										<div class="row.uniform ">
 											<div class="9u">
 												Navn:
-												<input type="text" name="name" placeholder="Navn" required/>
+												<input type="text" name="name" placeholder="Navn" required />
 												Email:
-												<input type="email" name="email" placeholder="Elektronisk Mail" required/>
+												<input type="email" name="email" placeholder="Fyll inn Westerdals epost" required/>
 												&nbsp;
 											<div class="5u">
-												<input onclick="newDoc()" type="submit" name="submit" value="Bekreft" />												
+												<input type='submit' name='submit'/> 	
 											</div>
-										
 										</div>
 									</form>
 								</section>
 							</article>
-
-						
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
 									<h2>Kvittering</h2>
 								</header> <h6>  </h6>
-								<form action="../form.php" method="post">
 									<div>
 
 										<div class="row">
@@ -434,9 +406,7 @@ if(!$allready_ordered){
 														echo "" . $_COOKIE["id2"];
 
 												} else {
-
 													echo "Ingen ledige rom med deres spesifikasjoner";
-													
 												}
 
 												 ?>
@@ -457,29 +427,25 @@ if(!$allready_ordered){
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9>Elektronisk post: </h9>
+												<h9>Epost sendt til: </h9>
 												<?php echo "" . $_COOKIE["email"]; ?>
 												</div>
 
 										</div>
 										<div class="row">
-											
-											
 												</div>
 										</div>
 									</div>
-								</form>
 							</article>
 					</div>
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; PJ1201 2015</li><li>
+							<li style="color: black">&copy; PJ1201 2015</li><li>
 						</ul>
 					</div>
 	
 			</div>
-
 	</body>
 
 </html>

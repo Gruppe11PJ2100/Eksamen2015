@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully<br>";
 
-/*
+
 // Create database
 $sql = "CREATE DATABASE myDB";
 if ($conn->query($sql) === TRUE) {
@@ -20,10 +20,10 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error creating database: " . $conn->error;
 }
-*/
+
 
 // sql to create table
-/*
+
 $sql = "CREATE TABLE email (
 email varchar(255) PRIMARY KEY, 
 name VARCHAR(255)
@@ -34,10 +34,10 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error creating table: " . $conn->error;
 }
-*/
+
 
 // sql to create table
-$sql = "CREATE TABLE mon (
+$sql = "CREATE TABLE Mandag (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 is_free enum('true','false') NOT NULL,
 prosjektor enum('true','false') NOT NULL,
@@ -52,7 +52,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "CREATE TABLE tue (
+$sql = "CREATE TABLE Tirsdag (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 is_free enum('true','false') NOT NULL,
 prosjektor enum('true','false') NOT NULL,
@@ -67,7 +67,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "CREATE TABLE wed (
+$sql = "CREATE TABLE Onsdag (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 is_free enum('true','false') NOT NULL,
 prosjektor enum('true','false') NOT NULL,
@@ -82,7 +82,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "CREATE TABLE thu (
+$sql = "CREATE TABLE Torsdag (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 is_free enum('true','false') NOT NULL,
 prosjektor enum('true','false') NOT NULL,
@@ -97,7 +97,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "CREATE TABLE fri (
+$sql = "CREATE TABLE Fredag (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 is_free enum('true','false') NOT NULL,
 prosjektor enum('true','false') NOT NULL,

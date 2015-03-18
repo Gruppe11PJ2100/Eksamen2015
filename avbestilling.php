@@ -30,10 +30,6 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
-						
-						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
-						
 					</nav>
 
 				<!-- Main -->
@@ -43,7 +39,7 @@
 							<article id="Qreservation" class="panel">
 							<div class="row.uniform ">
 								<div class="9u">
-									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"
+									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 										<h1>Avbestillings skjema, fyll inn.</h1><br>
 										Email:
 										<input type="email" name="email" placeholder="Elektronisk Mail" required/>
@@ -95,7 +91,7 @@ if (isset($_POST['submit'])){
 	$sql = "UPDATE $day SET email='', is_free='true' WHERE id=$rom AND email='$email';";
 
 	if ($conn->query($sql) === TRUE) {
-    	echo "Reservasjon avbestilt";
+    	echo '<script type="text/javascript">alert("Reservasjon Avbestillt");</script>';
 
 	} else {
     	echo "Error: Du satt inn noe ugyldig";
