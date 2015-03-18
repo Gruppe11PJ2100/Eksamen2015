@@ -145,11 +145,11 @@
     			font-size: 50px;
     			padding: 1.6em 0 0 0;
 				border: 5px solid black;
-				-moz-transition: background-color .25s ease-in-out;
-				-webkit-transition: background-color .25s ease-in-out;
-				-o-transition: background-color .25s ease-in-out;
-				-ms-transition: background-color .25s ease-in-out;
-				transition: border-color .25s, background-color .25s ease-in-out;
+				-moz-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-webkit-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-o-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-ms-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
 
 				
 			}
@@ -164,15 +164,15 @@
 
 			.member-label:hover {
    				cursor: pointer;
-  				background-color: gray;
-  				border-color: gray;
+  				background-color: #F1F1EB;
+  				border-color: #F1F1EB;
 			}
 
 			.member-input:checked + .member-label {
     			color: white;
-    			background-color: black;
+    			background-color: #61AFCA;
     			cursor: default;
-    			border-color: black;
+    			border-color: #61AFCA;
 			}
 
 			
@@ -195,11 +195,11 @@
 				margin: 10px 0 0 0;
 				color: #000;
 				font-weight: bold;
-				-moz-transition: background-color .25s ease-in-out;
-				-webkit-transition: background-color .25s ease-in-out;
-				-o-transition: background-color .25s ease-in-out;
-				-ms-transition: background-color .25s ease-in-out;
-				transition: background-color .25s ease-in-out;
+				-moz-transition: border-color .5s ease-in-out;
+				-webkit-transition: border-color .5s ease-in-out;
+				-o-transition: border-color .5s ease-in-out;
+				-ms-transition: border-color .5s ease-in-out;
+				transition: border-color .5s ease-in-out;
 			}
 
 			form input[type="text"],
@@ -237,7 +237,48 @@
 				color: #BFC4C1;
 			}	
 
-	
+			
+			.week-label {
+				text-align: center;
+    			display: inline-block;
+    			
+    			height: 0.5em;
+    			width: 4em;
+    			font-size: 20px;
+    			padding: 1.6em 0 0 0;
+				border: 5px solid black;
+				-moz-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-webkit-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-o-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				-ms-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+				transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+
+				
+			}
+
+			.week-input { 
+    			position: fixed;
+				top: 0; 
+				left: 100%;
+				z-index: -1;
+				visibility: hidden;
+			}
+
+			.week-label:hover {
+   				cursor: pointer;
+  				background-color: #F1F1EB;
+  				border-color: #F1F1EB;
+			}
+
+			.week-input:checked + .week-label {
+    			color: white;
+    			background-color: #61AFCA;
+    			cursor: default;
+    			border-color: #61AFCA;
+			}
+
+
+
 	/* Section/Article */
 
 		section,
@@ -326,11 +367,11 @@
 			border: 0;
 			cursor: pointer;
 			outline: 0;
-			-moz-transition: background-color .25s ease-in-out;
-			-webkit-transition: background-color .25s ease-in-out;
-			-o-transition: background-color .25s ease-in-out;
-			-ms-transition: background-color .25s ease-in-out;
-			transition: background-color .25s ease-in-out;
+			-moz-transition: color .5s ease-in-out,  background-color .5s ease-in-out;
+			-webkit-transition: color .5s ease-in-out,  background-color .5s ease-in-out;
+			-o-transition: color .5s ease-in-out,  background-color .5s ease-in-out;
+			-ms-transition: color .5s ease-in-out,  background-color .5s ease-in-out;
+			transition: color .5s ease-in-out, background-color .5s ease-in-out;
 		}
 
 			input[type="button"]:hover,
@@ -338,7 +379,8 @@
 			input[type="reset"]:hover,
 			.button:hover
 			{
-				background-color: #000;
+				background-color: #F1F1EB;
+				color: #000;
 			}
 			
 			input[type="button"]:active,
