@@ -113,7 +113,7 @@
 
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
-	
+
 
 			if ($conn->query($sql) === TRUE) {
     			echo "New record created successfully";
@@ -121,13 +121,24 @@
     			echo "Error: " . $sql . "<br>" . $conn->error;
 			}	
 
-			echo "<br>" . $prosjektor . $selected_radio . $day . $email;
+
+			$sql2 = "SELECT email FROM $day WHERE email='$email';";
+			$res = mysqli_query($conn, $sql2);
+			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
+			if(mysqli_num_rows($res) < 1){
+				$allready_ordered = false;
+			} else {
+				$allready_ordered = true;
+				echo '<script type="text/javascript">alert("Du har allerede reservert denne dagen");</script>';
+
+			}
+
 
 			$sql = "SELECT * FROM $day ORDER BY antall";
 			$result = mysqli_query($conn, $sql);
 
 
-			if (mysqli_num_rows($result) > 0) {
+			if (mysqli_num_rows($result) > 0 && !$allready_ordered) {
     			// output data of each row
     			while($row = mysqli_fetch_assoc($result)) {
 
@@ -253,18 +264,22 @@ $mail->addBCC('gruppe11pj2100@gmail.com');
 $mail->isHTML(true);
 
 $mail->Subject = "Takk for din reservasjon " . $name . "<br>";
-$mail->Body    = "" . $default . $dittrom1 . $dittrom2 "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
+$mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
 
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent';
+	echo '<script type="text/javascript">alert("Melding har blitt sendt til din email");</script>';
 }
 
-	header('Location: #confirm');  //Redirect to recit
 
+if(!$allready_ordered){
+	header('Location: #confirm');  //Redirect to recipt
+
+}
+	
 
 } // curly bracket from the if submitt button.
 
