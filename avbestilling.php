@@ -32,6 +32,7 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
 	<body>
+<article id="Qreservation" class="panel">
 <div class="row.uniform ">
 <div class="9u">
 	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -49,6 +50,7 @@
 	</form>
 </div>
 </div>
+</article>
 
 	</body>
 </html>
@@ -58,7 +60,7 @@
 
 <?php 
 
-	require 'config.php';
+	require 'php/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $email = test_input($_POST["email"]);
