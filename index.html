@@ -49,7 +49,7 @@
 								
 								
 								<a href="#Qreservation" class="jumplink pic">
-									<img src="images/logo.jpg" height="600" width="850" alt="" />
+									<img src="images/logo.jpg" height="600" width="850"/>
 									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
 									</center>
 								</a>
@@ -59,7 +59,9 @@
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-									<center><h2>Reservasjon</h2></center>
+								<center><img src="images/wact.png" height="200" width="200"/>
+								&nbsp;
+									<h2>Reservasjon</h2></center>
 								</header>
 								<p>
 									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. 
@@ -142,7 +144,7 @@
 											<div class="5u">
 												<!--<a href="#confirm" class="jumplink pic"> -->
 													
-														<input type='submit' name='submit' onclick='Javascript:checkEmail();'/> 
+														<input type='submit' value="Bekreft" name='submit' onclick='Javascript:checkEmail();'/> 
 													<script>
 														function checsymail() {
 															var email = document.getElementById('txtEmail');
@@ -160,11 +162,14 @@
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-									<center><h2>Kvittering</h2></center>
-								</header> <h6>  </h6>
-								<form action="../form.php" method="post">
+									<center>
+									<img src="images/wact.png" height="200" width="200"/>
+									<h2>Kvittering</h2>
+									&nbsp;
+									</center>
+								</header>
+										<form action="../form.php" method="post">
 									<div>
-
 										<div class="row">
 											<div class="6u"> 
 												<h9> Navn </h9>

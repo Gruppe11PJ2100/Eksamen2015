@@ -39,7 +39,7 @@
 	{
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
-		color: #777777;
+		color: #1F1F1F;
 	}
 	
 	strong, b
@@ -141,7 +141,7 @@
 			{
 				display: block;
 				font-weight: 400;
-				color: #363636;
+				color: #1F1F1F;
 				margin: 0 0 1em 0;
 			}
 		
@@ -153,7 +153,7 @@
 			{
 				-webkit-appearance: none;
 				border: 0;
-				background: #f4f4f4;
+				background: #A8A8AC;
 				padding: 0.75em;
 				width: 100%;
 				-moz-transition: background-color .25s ease-in-out;
@@ -182,22 +182,22 @@
 
 			form ::-webkit-input-placeholder
 			{
-				color: #999;
+				color: #FFFFFF;
 			}
 
 			form :-moz-placeholder
 			{
-				color: #999;
+				color: #FFFFFF;
 			}
 
 			form ::-moz-placeholder
 			{
-				color: #999;
+				color: #FFFFFF;
 			}
 
 			form :-ms-input-placeholder
 			{
-				color: #999;
+				color: #FFFFFF;
 			}	
 
 	
