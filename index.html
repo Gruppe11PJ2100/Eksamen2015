@@ -15,6 +15,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/init.js"></script>
+		
 </script>
 		<noscript>
 		<!-- Calendar -->
@@ -146,14 +147,14 @@
 												&nbsp;
 											<div class="5u">
 												<a href="#confirm" class="jumplink pic">
-												<input type="submit" value="Bekreft" onClick="confirm"/>
+												<input type="submit" name="submit" value="Bekreft" onClick="validateEmail(email)"/>
 												</a>
 											</div>
 										</div>
 									</form>
 								</section>
 							</article>
-
+						<script src="js/validator.js"></script>
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
