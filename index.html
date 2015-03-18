@@ -15,7 +15,14 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/init.js"></script>
-		
+		<!-- Calendar -->
+			<link href="css/fullcalendar.css" rel='stylesheet' />
+			<link href="js/lang-all.js">
+			<link href="css/fullcalendar.print.css" rel='stylesheet' media='print' />
+		<script src="js/calendar/jquery.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/fullcalendar.min.js"></script>
+		<script>
 			
 </script>
 		<noscript>
@@ -38,7 +45,7 @@
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						
-						<a href="#Qreservation" class="icon fa-cubes"><span>Hurting Reservasjon</span></a>
+						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
 					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
 						
 					</nav>
@@ -49,17 +56,14 @@
 						<!-- Home -->
 							<article id="main" class="panel">
 								<header>
-									<center>
 									<h1>Velkommen</h1>
 									<p>Rom reservasjon</p>
-									</center>
 								</header>
 
 								<a href="#Qreservation" class="jumplink pic">
-									<center>
-									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
-									</center>
 									<img src="images/logo.jpg" height="600" width="850" alt="" />
+									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
+									
 								</a>
 								
 							</article>
@@ -67,71 +71,85 @@
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-									<center>
 									<h2>Hurtig Reservasjon</h2>
-									</center>
 								</header>
 								<p>
-									<center>
-									Venligst velg hvor mange dere er og om dere trenger prosjektor.
-									</center>
+									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. 
+									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
+									luctus elit eget interdum.
 								</p>
 								<section>
 								<form action="#" method="post">
 									<div class="row">
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" id="member-1" class="member-input" checked>
        										<label for="member-1" class="member-label">2 medlemmer</label>
+       										</label>
 										</div>
 										
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" id="member-2" class="member-input">
         									<label for="member-2" class="member-label">3 medlemmer</label>
+        									</label>
 										</div>
 										
 										<div class="4u">
+										<label>
 										<input type="radio" name="members" id="member-3" class="member-input">
         									<label for="member-3" class="member-label first">4 medlemmer</label>
+        									</label>
 										</div>
 									</div>
 									<div class="row">
 										<div class="2u">
+										<label>
 										<label for="monday">Mandag</label>
         									<input type="checkbox" name="day" id="monday">
+        									</label>
 										</div>
 										<div class="2u">
+										<label>
 										<label for="tuesday">Tirsdag</label>
         									<input type="checkbox" name="day" id="tuesday">
+        									</label>
 										</div>
 										<div class="2u">
+										<label>
 										<label for="wednesday">Onsdag</label>
         									<input type="checkbox" name="day" id="wednesday">
+        									</label>
         									</div>
         								<div class="2u">
+        								<label>
 										<label for="thursday">Torsdag</label> 
         									<input type="checkbox" name="day" id="thursday">	
+        									</label>
 											</div>
 										<div class="2u">
+										<label>
         								<label for="friday">Fredag</label>		
         									<input type="checkbox" name="day" id="friday">	
+        									</label>
 											</div>
 										</div>
 										
 									
-									<div class="row">
-										<div class="12u">
+									<div class="fieldgroup">
+										<div class="4u">
 										<form action="../form.php" method="post">
  										  Rom med prosjektor? 
  										  <p>
   											<input type="radio" name="prosjektor" value="Yes."> Ja 
-  											&nbsp;
   										 	<input type="radio" name="prosjektor" value="No."> Nei 
         									<p>
+
 									</div>
 										<div class="row.uniform ">
 											<div class="9u">
 												<input type="text" name="name" placeholder="Navn" />
-												<input type="email" name="email" placeholder="Din Westerdals epost" />
+												<input type="email" name="email" placeholder="Elektronisk Mail" />
 												&nbsp;
 											<div class="5u">
 												<input type="submit" value="Bekreft" />
@@ -145,41 +163,39 @@
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-									<center>
-									<h2>Kvittering:</h2>
-									</center>
+									<h2>Kvittering</h2>
 								</header> <h6>  </h6>
 								<form action="../form.php" method="post">
 									<div>
 
 										<div class="row">
 											<div class="6u"> 
-												<h9> Navn: </h9>
+												<h9> Navn </h9>
 												<!-- Sssenpai -->
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Medlemmer: </h9>
+												<h9> Medlemmer </h9>
 												<!-- Insert PHP medlemmer her -->
 											</div>
 										</div>
 										<div class="row">
 										<div class="6u">
-												<h9> Hvilke dager: </h9>
+												<h9> Hvilke dager </h9>
 												<!-- Work your magic Edvin -->
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Prosjektor: </h9>
+												<h9> Prosjektor </h9>
 												<!-- Show me how you work it -->
 												</div>
 											
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9>Elektronisk post: </h9>
+												<h9>Elektronisk post</h9>
 												<!-- Edvin, the true king -->
 												</div>
 

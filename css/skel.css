@@ -206,6 +206,13 @@
 				margin: 0 0 -1px 0;
 			}
 
+	/*Group*/
+	.fieldgroup {
+		float: left;
+		width: auto;
+		margin-left: 3em;
+	}
+
 	/*Reservation*/
 	#day {
 		font-size: 10px;
