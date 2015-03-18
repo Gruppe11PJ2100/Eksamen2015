@@ -36,6 +36,7 @@
     }
     			})
 			});
+
 </script>
 		<noscript>
 		<!-- Calendar -->
@@ -47,11 +48,31 @@
 			<link rel="stylesheet" href="css/style-noscript.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+		<?php 
+		/*
+		setcookie("name", "", time() +  60 * 60 * 24, "/");
+		setcookie("email", "", time() +  60 * 60 * 24, "/");
+		setcookie("members", "", time() +  60 * 60 * 24, "/");
+		setcookie("day", "", time() +  60 * 60 * 24, "/");
+		setcookie("prosjektor", "", time() +  60 * 60 * 24, "/");
+		setcookie("id", "", time() +  60 * 60 * 24, "/");
+		setcookie("id2", "", time() +  60 * 60 * 24, "/");
+
+		*/
+
+		setcookie("perfect_match", 0, time() +  60 * 60 * 24, "/");
+		setcookie("found_a_match", 0, time() +  60 * 60 * 24, "/");
+
+		
+		?>
 	</head>
 	<body>
 
 
 		<?php
+
+
 
 		// define variables and set to empty values
 		$name = $email = $day = $id = $id2 = $amount = "";
@@ -68,8 +89,9 @@
 			$day = test_input($_POST["day"]);
 			$prosjektor = $_POST["prosjektor"];
 
-
 		}
+
+
 
 		function test_input($data) {
  			$data = trim($data);
@@ -82,7 +104,12 @@
 		
 		if (isset($_POST['submit'])){
 
-			echo "" . $prosjektor;
+			setcookie("name", $name, time() +  60 * 60 * 24, "/");
+			setcookie("email", $email, time() +  60 * 60 * 24, "/");
+			setcookie("members", $selected_radio, time() +  60 * 60 * 24, "/");
+			setcookie("day", $day, time() +  60 * 60 * 24, "/");
+			setcookie("prosjektor", $prosjektor, time() +  60 * 60 * 24, "/");
+
 
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
@@ -185,10 +212,16 @@ $takk = "Takk for din reservasjon " . $name . "<br>";
 if($perfect_match && $found_a_match){
 
 		$dittrom1 = "Ditt rom: " . $id . " er reservert på " . $day . "<br>";
+		setcookie("id", $id, time() +  60 * 60 * 24, "/");
+		setcookie("perfect_match", true, time() +  60 * 60 * 24, "/");
+
+
 
 	} else if(!$perfect_match && $found_a_match){
 
 		$dittrom2 = "Ditt rom: " . $id2 . " er reservert på " . $day . "<br>";
+		setcookie("id2", $id2, time() +  60 * 60 * 24, "/");
+		setcookie("found_a_match", true, time() +  60 * 60 * 24, "/");
 
 	} else {
 
@@ -196,12 +229,14 @@ if($perfect_match && $found_a_match){
 }
 
 
+
+
 require 'PHPMailer5/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
 $mail->isSMTP();                                     	// Set mailer to use SMTP
-$mail->Host = 'smtp.google.com';  						// Specify main and backup SMTP servers
+$mail->Host = 'smtp.gmail.com';  						// Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               	// Enable SMTP authentication
 $mail->Username = 'gruppe11pj2100@gmail.com';           // SMTP username
 $mail->Password = '&%{I952T/1~=9@e';                    // SMTP password
@@ -209,7 +244,7 @@ $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption
 $mail->Port = 465;                                      // TCP port to connect to
 $mail->From = 'gruppe11pj2100@gmail.com';
 $mail->FromName = 'Westerdals';
-$mail->addAddress('gruppe11pj2100@gmail.com', 'Test User');  // Add a recipient
+$mail->addAddress('$email', '$name');  // Add a recipient
 $mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
 $mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
 $mail->addCC('gruppe11pj2100@gmail.com');
@@ -218,7 +253,7 @@ $mail->addBCC('gruppe11pj2100@gmail.com');
 $mail->isHTML(true);
 
 $mail->Subject = "Takk for din reservasjon " . $name . "<br>";
-$mail->Body    = "" . $default . $dittrom1 . $dittrom2;
+$mail->Body    = "" . $default . $dittrom1 . $dittrom2 "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
 
 
 if(!$mail->send()) {
@@ -228,10 +263,12 @@ if(!$mail->send()) {
     echo 'Message has been sent';
 }
 
+	header('Location: #confirm');  //Redirect to recit
+
+
 } // curly bracket from the if submitt button.
 
-
-
+	
 		$conn->close();	
 
 
@@ -335,12 +372,12 @@ if(!$mail->send()) {
 										<div class="row.uniform ">
 											<div class="9u">
 												Navn:
-												<input type="text" name="name" placeholder="Navn" />
+												<input type="text" name="name" placeholder="Navn" required/>
 												Email:
-												<input type="email" name="email" placeholder="Elektronisk Mail" />
+												<input type="email" name="email" placeholder="Elektronisk Mail" required/>
 												&nbsp;
 											<div class="5u">
-												<input type="submit" name="submit" value="Bekreft"  />												
+												<input onclick="newDoc()" type="submit" name="submit" value="Bekreft" />												
 											</div>
 										
 										</div>
@@ -360,28 +397,28 @@ if(!$mail->send()) {
 										<div class="row">
 											<div class="6u"> 
 												<h9> Navn: </h9>
-												<?php echo "" . $name; ?>
+												<?php echo "" . $_COOKIE["name"]; ?>
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
 												<h9> Medlemmer: </h9>
-												<?php echo "" . $selected_radio; ?>
+												<?php echo "" . $_COOKIE["members"]; ?>
 												</div>
 										</div>
 										<div class="row">
 											<div class="6u"> 
 												<h9> Rom nr: </h9>
 												<?php 
-												if($perfect_match && $found_a_match){
+												if($_COOKIE["perfect_match"] == true){
 
-													echo "" . $id;
+													echo "" . $_COOKIE["id"];
 
-													} else if(!$perfect_match && $found_a_match){
+													} else if($_COOKIE["found_a_match"] == true){
 
-													echo "" . $id2;
+														echo "" . $_COOKIE["id2"];
 
-													} else {
+												} else {
 
 													echo "Ingen ledige rom med deres spesifikasjoner";
 													
@@ -393,20 +430,20 @@ if(!$mail->send()) {
 										<div class="row">
 										<div class="6u">
 												<h9> Hvilke dager: </h9>
-												<?php echo "" . $day; ?>
+												<?php echo "" .$_COOKIE["day"]; ?>
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
 												<h9> Prosjektor: </h9>
-												<?php echo "" . $prosjektor; ?>
+												<?php echo "" . $_COOKIE["prosjektor"]; ?>
 												</div>
 											
 										</div>
 										<div class="row">
 											<div class="6u"> 
 												<h9>Elektronisk post: </h9>
-												<?php echo "" . $email; ?>
+												<?php echo "" . $_COOKIE["email"]; ?>
 												</div>
 
 										</div>
