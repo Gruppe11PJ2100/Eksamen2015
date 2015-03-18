@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
 	<head>
@@ -10,16 +10,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/init.js"></script>
-		<!-- Calendar -->
-			<link href="css/fullcalendar.css" rel='stylesheet' />
-			<link href="js/lang-all.js">
-			<link href="css/fullcalendar.print.css" rel='stylesheet' media='print' />
-		<script src="js/calendar/jquery.min.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/fullcalendar.min.js"></script>
-		<script>
-			
-</script>
+
 		<noscript>
 		<!-- Calendar -->
 		
@@ -32,31 +23,54 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
 	<body>
-<article id="Qreservation" class="panel">
-<div class="row.uniform ">
-<div class="9u">
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-		<h1>Avbestillings skjema, fyll inn.</h1><br>
-		Email:
-		<input type="email" name="email" placeholder="Elektronisk Mail" required/>
-		<br>
-		Rom nr:
-		<input type="text" name="romID" required>
-		<br>
-		Hvilken dag:
-		<input type="text" name="day" required>
-		<br>
-		<input type="submit" name="submit" value="Submit"> 
-	</form>
-</div>
-</div>
-</article>
 
+		<!-- Wrapper-->
+			<div id="wrapper">
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
+						
+						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
+					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						
+						<!-- Home -->
+							<article id="Qreservation" class="panel">
+							<div class="row.uniform ">
+								<div class="9u">
+									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"
+										<h1>Avbestillings skjema, fyll inn.</h1><br>
+										Email:
+										<input type="email" name="email" placeholder="Elektronisk Mail" required/>
+										<br>
+										Rom nr:
+										<input type="text" name="romID" required>
+										<br>
+										Hvilken dag:
+										<input type="text" name="day" required>
+										<br>
+										<input type="submit" name="submit" value="Submit"> 
+									</form>
+								</div>
+							</div>
+						</article>
+
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; PJ1201 2015</li><li>
+						</ul>
+					</div>
+	
+			</div>
 	</body>
+
 </html>
-
-
-
 
 <?php 
 
