@@ -152,7 +152,11 @@
 
 			.mainNav {
 				text-align: center;
-				padding-top: 40px;
+				
+			}
+
+			.frontpage {
+				padding-top: 50px;
 			}
 
 			.buttons {
