@@ -101,7 +101,8 @@
 			
 	#wrapper
 	{
-		width: 45em;
+		padding-top: 40px !important;
+		width: 45em !important;
 		margin: 0 auto;
 		opacity: 0.00001;
 	}

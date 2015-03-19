@@ -93,7 +93,7 @@
 
 			$sql2 = "SELECT email FROM $day WHERE email='$email';";
 			$res = mysqli_query($conn, $sql2);
-			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
+			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
 				$allready_ordered = false;
 			} else {
@@ -296,6 +296,14 @@ if(!$allready_ordered){
 										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
 							 		</div>
 
+<<<<<<< HEAD
+=======
+=======
+									<center>
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200" title="Tilbake til hovedmenyen" alt="" />
+									</center>
+>>>>>>> 19d8c3079d074fcd5c08895f73710bb735b6e4be
+>>>>>>> origin/master
 								</header>
 								
 								<section>
