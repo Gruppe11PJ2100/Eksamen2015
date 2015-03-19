@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Westerdals WOACT Rom Reservasjon</title>
+		<title>Westerdals WOACT Romreservasjon</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -21,235 +21,8 @@
 			<link rel="stylesheet" href="css/style-noscript.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-
-		<?php 
-
-		setcookie("perfect_match", 0, time() +  60 * 60 * 24, "/");
-		setcookie("found_a_match", 0, time() +  60 * 60 * 24, "/");
-
-		
-		?>
 	</head>
 	<body>
-<!-- just php ignore :)
-		<?php
-
-
-
-		// define variables and set to empty values
-		$name = $email = $day = $id = $id2 = $amount = "";
-
-		$prosjektor = 'false';
-
-		$perfect_match = null;
-		$found_a_match = false;
-
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   			$name = test_input($_POST["name"]);
-   			$email = test_input($_POST["email"]);
-   			$selected_radio = $_POST["members"];
-			$day = test_input($_POST["day"]);
-			$prosjektor = $_POST["prosjektor"];
-
-		}
-
-
-
-		function test_input($data) {
- 			$data = trim($data);
-  			$data = stripslashes($data);
-   			$data = htmlspecialchars($data);
-   			return $data;
-		}
-
-		require 'php/config.php';
-		
-		if (isset($_POST['submit'])){
-
-			setcookie("name", $name, time() +  60 * 60 * 24, "/");
-			setcookie("email", $email, time() +  60 * 60 * 24, "/");
-			setcookie("members", $selected_radio, time() +  60 * 60 * 24, "/");
-			setcookie("day", $day, time() +  60 * 60 * 24, "/");
-			setcookie("prosjektor", $prosjektor, time() +  60 * 60 * 24, "/");
-
-
-			$sql = "INSERT INTO email
-				VALUES ('$email', '$name')";
-
-
-			if ($conn->query($sql) === TRUE) {
-    			echo "New record created successfully";
-			} else {
-    			echo "Error: " . $sql . "<br>" . $conn->error;
-			}	
-
-
-			$sql2 = "SELECT email FROM $day WHERE email='$email';";
-			$res = mysqli_query($conn, $sql2);
-			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
-			if(mysqli_num_rows($res) < 1){
-				$allready_ordered = false;
-			} else {
-				$allready_ordered = true;
-				echo '<script type="text/javascript">alert("Du har allerede reservert denne dagen");</script>';
-
-			}
-
-
-			$sql = "SELECT * FROM $day ORDER BY antall";
-			$result = mysqli_query($conn, $sql);
-
-
-			if (mysqli_num_rows($result) > 0 && !$allready_ordered) {
-    			// output data of each row
-    			while($row = mysqli_fetch_assoc($result)) {
-
-    				$id = $row["id"];
-
-    				if($row["is_free"] == 'true' && $row["antall"] == $selected_radio && $row["prosjektor"] == $prosjektor){
-
-    					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
-
-    					if ($conn->query($update) === TRUE) {
-    						echo "New record created successfully perfect_match";
-    						$perfect_match = true;
-    						$found_a_match = true;
-
-						} else {
-    						echo "Error: " . $update . "<br>" . $conn->error;
-						}
-						break;
-    				} else  {
-    					$perfect_match = false;
-    				}
-
-    			}
-
-    			$newSql = "SELECT * FROM $day ORDER BY antall";
-    			$result = $conn->query($newSql);
-
-    			if($perfect_match == false){
-
-    				while($row = $result->fetch_assoc()){
-
-    					$amount = $row["antall"];
-
-    					$id2 = $row["id"];
-
-    					if($prosjektor == "false"){
-
-    						if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
-
-    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
-
-    							if ($conn->query($update2) === TRUE) {
-    								echo "<br>New record created successfully med et annet antall";
-    								$found_a_match = true;
-
-								} else {
-    								echo "Error: " . $update2 . "<br>" . $conn->error;
-								}
-								break;
-    						}
-
-	    				} else {
-
-	    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
-
-	    						echo "must have prosjektor";
-
-    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
-
-    							if ($conn->query($update2) === TRUE) {
-    								echo "<br>New record created successfully med prosjektor";
-    								$found_a_match = true;
-
-								} else {
-    								echo "Error: " . $update2 . "<br>" . $conn->error;
-								}
-								break;
-	    					}
-
-	    				}
-
-    				}
-    			}
-			} else {
- 		  		 echo "0 results";
-			}
-
-// START mailing part of the script
-$takk = $dittrom1 = $dittrom2 = $default = "";
-$takk = "Takk for din reservasjon " . $name . "<br>";
-
-if($perfect_match && $found_a_match){
-
-		$dittrom1 = "Ditt rom: " . $id . " er reservert på " . $day . "<br>";
-		setcookie("id", $id, time() +  60 * 60 * 24, "/");
-		setcookie("perfect_match", true, time() +  60 * 60 * 24, "/");
-
-
-
-	} else if(!$perfect_match && $found_a_match){
-
-		$dittrom2 = "Ditt rom: " . $id2 . " er reservert på " . $day . "<br>";
-		setcookie("id2", $id2, time() +  60 * 60 * 24, "/");
-		setcookie("found_a_match", true, time() +  60 * 60 * 24, "/");
-
-	} else {
-
-		$default = "Ingen ledige rom med deres spesifikasjoner<br>";
-}
-
-
-
-
-require 'PHPMailer5/PHPMailerAutoload.php';
-
-$mail = new PHPMailer;
-
-$mail->isSMTP();                                     	// Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  						// Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               	// Enable SMTP authentication
-$mail->Username = 'gruppe11pj2100@gmail.com';           // SMTP username
-$mail->Password = '&%{I952T/1~=9@e';                    // SMTP password
-$mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                      // TCP port to connect to
-$mail->From = 'gruppe11pj2100@gmail.com';
-$mail->FromName = 'Westerdals';
-$mail->addAddress('$email', '$name');  // Add a recipient
-$mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
-$mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
-$mail->addCC('gruppe11pj2100@gmail.com');
-$mail->addBCC('gruppe11pj2100@gmail.com');
-
-$mail->isHTML(true);
-
-$mail->Subject = "Takk for din reservasjon " . $name . "<br>";
-$mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
-
-
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-	echo '<script type="text/javascript">alert("Melding har blitt sendt til din email");</script>';
-}
-
-
-if(!$allready_ordered){
-	header('Location: #confirm');  //Redirect to recipt
-
-}
-	
-
-} // curly bracket from the if submitt button.
-
-	
-		$conn->close();	
-
-
-?> -->
 
 		<!-- Wrapper-->
 			<div id="wrapper">
@@ -257,8 +30,9 @@ if(!$allready_ordered){
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
+						
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-						<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
+					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
 						
 					</nav>
 
@@ -267,17 +41,20 @@ if(!$allready_ordered){
 						
 						<!-- Home -->
 							<article id="main" class="panel">
-								<center>
+								
 								<header>
-									<h1>Velkommen</h1>
-									<p>Rom reservasjon</p>
+									<center>
+									<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
+								
+									<p>Romreservasjon</p>
+									</center>
 								</header>
 								
 								
 								<a href="#Qreservation" class="jumplink pic">
-									<img src="images/logo.jpg" height="600" width="850"/>
-									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
-									</center>
+									
+									<span class="arrow icon fa-chevron-right"><span> Hurtigreservasjon</span>
+									
 								</a>
 								
 							</article>
@@ -285,106 +62,104 @@ if(!$allready_ordered){
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-								<center><img src="images/wact.png" height="200" width="200"/>
-								&nbsp;
-									<h2>Reservasjon</h2></center>
+								<center>
+									<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
+							
+								</center>
+									<h2>Hurigreservasjon</h2>
 								</header>
-								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit. 
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia 
-									luctus elit eget interdum.
-								</p>
+								
 								<section>
-								<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+								<form action="#confirm" method="post">
+
+									<h3>Hvor mange er dere?</h3>
+									<div class="seperator blue"></div>
 									<div class="row">
+
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="2" id="member-1" class="member-input" checked>
-       										<label for="member-1" class="member-label">2 medlemmer</label>
-       										</label>
+											<input type="radio" name="members" id="member-1" class="member-input" checked>
+       										<label for="member-1" class="member-label two">2</label>
 										</div>
 										
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="3" id="member-2" class="member-input">
-        									<label for="member-2" class="member-label">3 medlemmer</label>
-        									</label>
+											<input type="radio" name="members" id="member-2" class="member-input">
+        									<label for="member-2" class="member-label three">3</label>
 										</div>
 										
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="4" id="member-3" class="member-input">
-        									<label for="member-3" class="member-label first">4 medlemmer</label>
-        									</label>
+											<input type="radio" name="members" id="member-3" class="member-input">
+        									<label for="member-3" class="member-label four">4</label>
 										</div>
+
 									</div>
+
+									<h3>Hvilken dag?</h3>
+									<div class="seperator purple"></div>
 									<div class="row">
+
 										<div class="2u">
-										<label>
-										<label for="monday">Mandag</label>
-        									<input type="radio" name="day" value="Mandag" id="monday" checked>
-        									</label>
+										<input type="checkbox" name="day" id="monday" class="week-input">
+										<label for="monday" class="week-label">Mandag</label>
 										</div>
+
 										<div class="2u">
-										<label>
-										<label for="tuesday">Tirsdag</label>
-        									<input type="radio" name="day" value="Tirsdag" id="tuesday">
-        									</label>
+										<input type="checkbox" name="day" id="tuesday" class="week-input">
+										<label for="tuesday" class="week-label">Tirsdag</label>
 										</div>
+
 										<div class="2u">
-										<label>
-										<label for="wednesday">Onsdag</label>
-        									<input type="radio" name="day" value="Onsdag" id="wednesday">
-        									</label>
-        									</div>
+										<input type="checkbox" name="day" id="wednesday" class="week-input">
+										<label for="wednesday" class="week-label">Onsdag</label>
+        								</div>
+
         								<div class="2u">
-        								<label>
-										<label for="thursday">Torsdag</label> 
-        									<input type="radio" name="day" value="Torsdag" id="thursday">	
-        									</label>
-											</div>
+        								<input type="checkbox" name="day" id="thursday" class="week-input">	
+										<label for="thursday" class="week-label">Torsdag</label> 
+        								</div>
+
 										<div class="2u">
-										<label>
-        								<label for="friday">Fredag</label>		
-        									<input type="radio" name="day" value="Fredag" id="friday">	
-        									</label>
-											</div>
-										</div>
-										
+										<input type="checkbox" name="day" id="friday" class="week-input">	
+        								<label for="friday" class="week-label">Fredag</label>		
+        								</div>
+
+									</div>
 									
+									<h3>Hvem reserverer?</h3>
+									<div class="seperator yellow"></div>
 									<div class="fieldgroup">
 										<div class="4u">
 										<form action="../form.php" method="post">
- 										  Rom med prosjektor? 
- 										  <p>
-  											<input type="radio" name="prosjektor" value="true."> Ja 
-  										 	<input type="radio" name="prosjektor" value="false" checked> Nei 
-        									<p>
+ 										  Trenger dere prosjektor? 
+ 										<p>
+  											<input type="checkbox" name="prosjektor" id="projector" value="Yes." class="projector-input"> 
+  										 	<label for="projector" class="projector-label"></label>
+        								<p>
 
 									</div>
-										<div class="row.uniform ">
-											<div class="9u">
-												Navn:
-												<input type="text" name="name" placeholder="Navn" required />
-												Email:
-												<input type="email" name="email" placeholder="Fyll inn Westerdals epost" required/>
-												&nbsp;
+
+									<div class="row.uniform ">
+										<div class="9u">
+											<input type="text" name="name" class="nameEmail" placeholder="Navn" />
+											<input type="email" name="email" class="nameEmail" placeholder="Din Westerdals-epost" />
+											&nbsp;
 											<div class="5u">
 												<!--<a href="#confirm" class="jumplink pic"> -->
-													
-														<input type='submit' value="Bekreft" name='submit' onclick='Javascript:checkEmail();'/> 
-													<script>
-														function checsymail() {
-															var email = document.getElementById('txtEmail');
-   															 var filter = /^([a-zA-Z0-9_\.\-])+\@student.westerdals(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    													 if(email.indexOf("@student.westerdals.no", email.length - "@student.westerdals.no".length) !== -1){
-        												console.log("VALID");
+											<input type='submit' value="Bekreft" name='submit' onclick='Javascript:checkEmail();'/> 
+												<script>
+													function checsymail() {
+														var email = document.getElementById('txtEmail');
+   														var filter = /^([a-zA-Z0-9_\.\-])+\@student.westerdals(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    													
+    													if(email.indexOf("@student.westerdals.no", email.length - "@student.westerdals.no".length) !== -1){
+        													console.log("VALID");
  														}
    													}
-												}</script>
+												</script>
 											</div>
 										</div>
+									</div>
 									</form>
+
 								</section>
 							</article>
 						<!-- confirm -->
@@ -400,25 +175,25 @@ if(!$allready_ordered){
 									<div>
 										<div class="row">
 											<div class="6u"> 
-												<h9> Navn: </h9>
+												<h9> Navn </h9>
 												<!-- Sssenpai -->
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Medlemmer: </h9>
+												<h9> Medlemmer </h9>
 												<!-- Insert PHP medlemmer her -->
 											</div>
 										</div>
 										<div class="row">
 										<div class="6u">
-												<h9> Hvilke dager: </h9>
+												<h9> Hvilke dager </h9>
 												<!-- Work your magic Edvin -->
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Prosjektor: </h9>
+												<h9> Prosjektor </h9>
 												<!-- Show me how you work it -->
 												</div>
 											
