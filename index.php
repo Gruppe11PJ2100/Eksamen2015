@@ -267,18 +267,17 @@ if(!$allready_ordered){
 						
 						<!-- Home -->
 							<article id="main" class="panel">
-								<center>
 								<header>
-									<h1>Velkommen</h1>
-									<p>Rom reservasjon</p>
+									<center>
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
+										
+									</center>
 								</header>
 								
-								
-								<a href="#Qreservation" class="jumplink pic">
-									<img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" />
-									<div class ="button"> Hurtigreservasjon</div>
-									</center>
-								</a>
+								<center>
+								<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
+								<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
+								</center>
 								
 							</article>
 	
@@ -286,7 +285,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<a href="#" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
+										<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									</center>
 								</header>
 								
@@ -385,6 +384,7 @@ if(!$allready_ordered){
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
+									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									<h2>Kvittering</h2>
 								</header> <h6>  </h6>	
 									<div>
@@ -441,6 +441,7 @@ if(!$allready_ordered){
 
 										</div>
 										<div class="row">
+											<div class="button">Tilbake</div>
 												</div>
 										</div>
 									</div>

@@ -16,7 +16,7 @@
 
 	body
 	{
-		background-color: #F1F1ED;
+		background-color: #EDEDED;
 		background-repeat:			repeat,							no-repeat;
 		background-size:			auto,							100% 100%;
 	}
@@ -465,6 +465,11 @@
 				{
 					background-color: #999999;
 				}
+
+			.buttonRed:hover {
+			background-color: #BC2B40;
+			border-color: #BC2B40;
+		}
 	
 	/* List */
 	
