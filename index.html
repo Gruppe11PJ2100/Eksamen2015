@@ -29,7 +29,7 @@
 				
 				<!-- Nav 
 					<nav id="nav">
-						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
+						<a href="#home" class="icon fa-home active"><span>Hjem</span></a>
 						
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
 					<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
@@ -40,20 +40,18 @@
 					<div id="main">
 						
 						<!-- Home -->
-							<article id="main" class="panel">
+							<article id="home" class="panel">
 								
 								<header>
-									<center>
-										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
-										
-									</center>
+									<div class ="mainNav">
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo">
+									</div>
 								</header>
 								
-
-								<center>
-								<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
-								<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
-								</center>
+								<div class="mainNav">
+									<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
+									<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
+								</div>
 
 								
 							</article>
@@ -61,15 +59,16 @@
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-								<center>
-									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" title="Tilbake til hovedmenyen"/></a>
-							
-								</center>
+
+									<div class="mainNav">
+										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"></a>
+							 		</div>			
+
 									<h2>Hurtigreservasjon</h2>
 								</header>
 								
 								<section>
-								<form action="#confirm" method="post">
+								
 
 									<h3>Hvor mange er dere?</h3>
 									<div class="seperator blue"></div>
@@ -97,13 +96,13 @@
 									<div class="row">
 
 										<div class="2u">
-										<input type="checkbox" name="day" id="monday" class="week-input">
-										<label for="monday" class="week-label">Mandag</label>
+											<input type="checkbox" name="day" id="monday" class="week-input">
+											<label for="monday" class="week-label">Mandag</label>
 										</div>
 
 										<div class="2u">
-										<input type="checkbox" name="day" id="tuesday" class="week-input">
-										<label for="tuesday" class="week-label">Tirsdag</label>
+											<input type="checkbox" name="day" id="tuesday" class="week-input">
+											<label for="tuesday" class="week-label">Tirsdag</label>
 										</div>
 
 										<div class="2u">
@@ -112,13 +111,13 @@
         								</div>
 
         								<div class="2u">
-        								<input type="checkbox" name="day" id="thursday" class="week-input">	
-										<label for="thursday" class="week-label">Torsdag</label> 
+        									<input type="checkbox" name="day" id="thursday" class="week-input">	
+											<label for="thursday" class="week-label">Torsdag</label> 
         								</div>
 
 										<div class="2u">
-										<input type="checkbox" name="day" id="friday" class="week-input">	
-        								<label for="friday" class="week-label">Fredag</label>		
+											<input type="checkbox" name="day" id="friday" class="week-input">	
+        									<label for="friday" class="week-label">Fredag</label>		
         								</div>
 
         								<div class="4u">
@@ -159,58 +158,64 @@
 									</div>
 									
 
-								</section>
+									</section>
 							</article>
 						<!-- confirm -->
 							<article id="confirm" class="panel">
+
 								<header>
+<<<<<<< HEAD
+									<div class="mainNav">
+										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"></a>
+							 		</div>
+							 		<h2>Kvittering</h2>
+=======
 									<center>
 									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen" /></a>
 									<h2>Kvittering</h2>
 									&nbsp;
 									</center>
+>>>>>>> 19d8c3079d074fcd5c08895f73710bb735b6e4be
 								</header>
-										<form action="../form.php" method="post">
+
+								
+										
 									<div>
 										<div class="row">
 											<div class="6u"> 
-												<h9> Navn: </h9>
+												<p> Navn: </p>
 												<!-- Sssenpai -->
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Medlemmer: </h9>
+												<p> Medlemmer: </p>
 												<!-- Insert PHP medlemmer her -->
 											</div>
 										</div>
 										<div class="row">
 										<div class="6u">
-												<h9> Hvilke dager: </h9>
+												<p> Hvilke dager: </p>
 												<!-- Work your magic Edvin -->
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Prosjektor: </h9>
+												<p> Prosjektor: </p>
 												<!-- Show me how you work it -->
 												</div>
 											
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9>Epost: </h9>
+												<p>Epost: </p>
 												<!-- Edvin, the true king -->
 												</div>
 
 										</div>
-										<div class="row">
-											
-											
-												</div>
-										</div>
+										
 									</div>
-								</form>
+								
 							</article>
 
 					</div>

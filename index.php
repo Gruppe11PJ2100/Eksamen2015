@@ -266,7 +266,7 @@ if(!$allready_ordered){
 				
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
+						<a href="#home" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
 					</nav>
 
@@ -274,28 +274,34 @@ if(!$allready_ordered){
 					<div id="main">
 						
 						<!-- Home -->
-							<article id="main" class="panel">
-								<center>
+							<article id="home" class="panel">
 								<header>
-									<h1>Velkommen</h1>
-									<p>Rom reservasjon</p>
+									<div class="mainNav">
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo">
+							 		</div>
 								</header>
 								
-								
-								<a href="#Qreservation" class="jumplink pic">
-									<img src="images/logo.jpg" height="600" width="850" alt="" />
-									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
-									</center>
-								</a>
+								<div class="mainNav">
+									<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
+									<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
+								</div>
 								
 							</article>
 	
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
+<<<<<<< HEAD
+
+									<div class="mainNav">
+										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
+							 		</div>
+
+=======
 									<center>
 										<img src="images/WACT_svart_rgb.svg" height="200" width="200" title="Tilbake til hovedmenyen" alt="" />
 									</center>
+>>>>>>> 19d8c3079d074fcd5c08895f73710bb735b6e4be
 								</header>
 								
 								<section>
@@ -393,25 +399,33 @@ if(!$allready_ordered){
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
+<<<<<<< HEAD
+									<div class="mainNav">
+										<a href="index.php" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
+							 		</div>
+=======
+>>>>>>> origin/master
 									<h2>Kvittering</h2>
-								</header> <h6>  </h6>	
+								</header> 
+
+
 									<div>
 
 										<div class="row">
 											<div class="6u"> 
-												<h9> Navn: </h9>
+												<p> Navn: </p>
 												<?php echo "" . $_COOKIE["name"]; ?>
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Medlemmer: </h9>
+												<p> Medlemmer: </p>
 												<?php echo "" . $_COOKIE["members"]; ?>
 												</div>
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9> Rom nr: </h9>
+												<p> Rom nr: </p>
 												<?php 
 												if($_COOKIE["perfect_match"] == true){
 
@@ -430,12 +444,17 @@ if(!$allready_ordered){
 											</div>
 										<div class="row">
 										<div class="6u">
-												<h9> Hvilke dager: </h9>
+												<p> Hvilke dager: </p>
 												<?php echo "" .$_COOKIE["day"]; ?>
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
+<<<<<<< HEAD
+												<p> Prosjektor: </p>
+												<?php echo "" . $_COOKIE["prosjektor"]; ?>
+											</div>
+=======
 												<h9> Prosjektor: </h9>
 												<?php 
 
@@ -446,11 +465,12 @@ if(!$allready_ordered){
 
 												?>
 												</div>
+>>>>>>> origin/master
 											
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9>Epost sendt til: </h9>
+												<p>Epost sendt til: </p>
 												<?php echo "" . $_COOKIE["email"]; ?>
 												</div>
 
