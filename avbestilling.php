@@ -91,12 +91,14 @@ function test_input($data) {
 
 if (isset($_POST['submit'])){
 	$sql = "UPDATE $day SET email='', is_free='true' WHERE id=$rom AND email='$email';";
-
-	if ($conn->query($sql) === TRUE) {
+	$conn->query($sql);
+	$affected_rows = $conn->affected_rows;
+	
+	if ($conn->query($sql) === TRUE && $affected_rows == 1) {
     	echo '<script type="text/javascript">alert("Reservasjon Avbestillt");</script>';
 
 	} else {
-    	echo "Error: Du satt inn noe ugyldig";
+    	echo '<script type="text/javascript">alert("Reservasjon ble ikke Avbestillt du satte inn noe ugyldig");</script>';
 	}
 }
 
