@@ -42,6 +42,7 @@
 
 		$prosjektor = "false";
 
+		$invalid;
 		$perfect_match = null;
 		$found_a_match = false;
 
@@ -98,16 +99,23 @@
 				$allready_ordered = false;
 			} else {
 				$allready_ordered = true;
-				echo '<script type="text/javascript">alert("Du har allerede reservert denne dagen");</script>';
-
 			}
 
+			$sql3 = "SELECT email FROM email WHERE email='$email'";
+			$result3 = mysqli_query($conn, $sql3);
+			if(mysqli_num_rows($result3) == 1){
+				$invalid = false;
+			} else {
+				$invalid = true;
+			}
+
+			//echo "invalid: " . $invalid;
 
 			$sql = "SELECT * FROM $day ORDER BY antall";
 			$result = mysqli_query($conn, $sql);
 
 
-			if (mysqli_num_rows($result) > 0 && !$allready_ordered) {
+			if (mysqli_num_rows($result) > 0 && !$allready_ordered && !$invalid) {
     			// output data of each row
     			while($row = mysqli_fetch_assoc($result)) {
 
@@ -182,8 +190,8 @@
     				}
     			}
 			} else {
- 		  		 //echo "0 results";
-			}
+ 		  		 echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
+ 			}
 
 // START mailing part of the script
 $takk = $dittrom1 = $dittrom2 = $default = "";
@@ -378,7 +386,7 @@ if(!$allready_ordered){
 
 												<div class="5u">
 													
-													<input type='submit' name='submit' /> 
+													<input type='submit' name='submit' value="Bekreft" /> 
 													
 												</div>
 
