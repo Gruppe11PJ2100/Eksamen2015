@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Westerdals WOACT Rom Reservasjon</title>
+		<title>WOACT Rom Reservasjon</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -293,7 +293,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<img src="images/wact.png" height="200" width="200"/>
+										<img src="images/wact.png" height="200" width="200" title="Tilbake til hovedmenyen"/>
 									</center>
 								</header>
 								
