@@ -72,7 +72,7 @@
 			setcookie("day", $day, time() +  60 * 60 * 24, "/");
 			setcookie("prosjektor", $prosjektor, time() +  60 * 60 * 24, "/");
 
-
+			/*
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
 
@@ -82,7 +82,7 @@
 			} else {
     			//echo "Error: " . $sql . "<br>" . $conn->error;
 			}	
-
+			*/
 
 			$sql2 = "SELECT email FROM $day WHERE email='$email';";
 			$res = mysqli_query($conn, $sql2);
@@ -198,7 +198,7 @@ if($perfect_match && $found_a_match){
 
 	} else {
 
-		$default = "Ingen ledige rom med deres spesifikasjoner<br>";
+		$default = "Ingen ledige rom denne dagen med deres spesifikasjoner beklager.<br>";
 }
 
 
@@ -260,8 +260,6 @@ if(!$allready_ordered){
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-						<a href="#confirm" class="icon fa-check-circle-o"><span>Bekreft</span></a>
-						
 					</nav>
 
 				<!-- Main -->
@@ -287,98 +285,108 @@ if(!$allready_ordered){
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-									<center><h2>Reservasjon</h2></center>
+									<center>
+										<img src="images/wact.png" height="200" width="200"/>
+									</center>
 								</header>
-								<p>
-									Velg antall medlemmer og hvilken dag dere vil ha grupperom.
-								</p>
+								
 								<section>
+
+								<!-- Medlemsvelger -->
+								<h2>Hurigreservasjon</h2>
 								<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+									<h3>Hvor mange er dere?</h3>
+									<div class="seperator blue"></div>
 									<div class="row">
+
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="2" id="member-1" class="member-input" checked>
-       										<label for="member-1" class="member-label">2 medlemmer</label>
-       										</label>
+											<input type="radio" name="members" value="2" id="member-1" class="member-input" checked>
+       										<label for="member-1" class="member-label two">2</label>
 										</div>
 										
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="3" id="member-2" class="member-input">
-        									<label for="member-2" class="member-label">3 medlemmer</label>
-        									</label>
+											<input type="radio" name="members" value="3" id="member-2" class="member-input">
+        									<label for="member-2" class="member-label three">3</label>
 										</div>
 										
 										<div class="4u">
-										<label>
-										<input type="radio" name="members" value="4" id="member-3" class="member-input">
-        									<label for="member-3" class="member-label first">4 medlemmer</label>
-        									</label>
+											<input type="radio" name="members" value="4" id="member-3" class="member-input">
+        									<label for="member-3" class="member-label four">4</label>
 										</div>
-									</div>
-									<div class="row">
-										<div class="2u">
-										<label>
-										<label for="monday">Mandag</label>
-        									<input type="radio" name="day" value="Mandag" id="monday" checked>
-        									</label>
-										</div>
-										<div class="2u">
-										<label>
-										<label for="tuesday">Tirsdag</label>
-        									<input type="radio" name="day" value="Tirsdag" id="tuesday">
-        									</label>
-										</div>
-										<div class="2u">
-										<label>
-										<label for="wednesday">Onsdag</label>
-        									<input type="radio" name="day" value="Onsdag" id="wednesday">
-        									</label>
-        									</div>
-        								<div class="2u">
-        								<label>
-										<label for="thursday">Torsdag</label> 
-        									<input type="radio" name="day" value="Torsdag" id="thursday">	
-        									</label>
-											</div>
-										<div class="2u">
-										<label>
-        								<label for="friday">Fredag</label>		
-        									<input type="radio" name="day" value="Fredag" id="friday">	
-        									</label>
-											</div>
-										</div>
-										
-									
-									<div class="fieldgroup">
-										<div class="4u">
-										<form action="../form.php" method="post">
- 										  Rom med prosjektor? 
- 										  <p>
-  											<input type="radio" name="prosjektor" value="true"> Ja 
-  										 	<input type="radio" name="prosjektor" value="false" checked> Nei 
-        									<p>
 
 									</div>
+
+									<!-- Ukedagvelger -->
+									<h3>Hvilken dag?</h3>
+									<div class="seperator purple"></div>
+									<div class="row">
+
+										<div class="2u">
+											<input type="radio" name="day" id="monday" value="Mandag" class="week-input" checked>
+											<label for="monday" class="week-label">Mandag</label>
+										</div>
+
+										<div class="2u">
+											<input type="radio" name="day" id="tuesday" value="Tirsdag" class="week-input">
+											<label for="tuesday" class="week-label">Tirsdag</label>
+										</div>
+
+										<div class="2u">
+											<input type="radio" name="day" id="wednesday" value="Onsdag" class="week-input">
+											<label for="wednesday" class="week-label">Onsdag</label>
+        								</div>
+
+        								<div class="2u">
+        									<input type="radio" name="day" id="thursday" value="Torsdag" class="week-input">	
+											<label for="thursday" class="week-label">Torsdag</label> 
+        								</div>
+
+										<div class="2u">
+											<input type="radio" name="day" id="friday" value="Fredag" class="week-input">	
+        									<label for="friday" class="week-label">Fredag</label>		
+        								</div>
+
+									</div>
+										
+									<!-- Prosjektor -->
+									<h3>Hvem reserverer?</h3>
+									<div class="seperator yellow"></div>
+									<div class="fieldgroup">
+
+										<div class="4u">
+ 										  Trenger dere prosjektor? 
+ 										<p>
+  											<input type="checkbox" name="prosjektor" id="projector" value="true" class="projector-input"> 
+  										 	<label for="projector" class="projector-label"></label>
+        								<p>
+
+										</div>
+
 										<div class="row.uniform ">
 											<div class="9u">
-												Navn:
-												<input type="text" name="name" placeholder="Navn" required />
-												Email:
-												<input type="email" name="email" placeholder="Fyll inn Westerdals epost" required/>
+
+												<input type="text" name="name" class="nameEmail" placeholder="Navn" required />
+												<input type="email" name="email" class="nameEmail" placeholder="Din Westerdals-epost" required />
 												&nbsp;
-											<div class="5u">
-												<input type='submit' name='submit'/> 	
+
+												<div class="5u">
+													
+													<input type='submit' name='submit' /> 
+													
+												</div>
+
 											</div>
+
 										</div>
-									</form>
+
+									</div>
 								</section>
 							</article>
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
 									<h2>Kvittering</h2>
-								</header> <h6>  </h6>
+								</header> <h6>  </h6>	
 									<div>
 
 										<div class="row">
@@ -406,7 +414,7 @@ if(!$allready_ordered){
 														echo "" . $_COOKIE["id2"];
 
 												} else {
-													echo "Ingen ledige rom med deres spesifikasjoner";
+													echo "Ingen ledige rom denne dagen med deres spesifikasjoner beklager";
 												}
 
 												 ?>
@@ -441,7 +449,7 @@ if(!$allready_ordered){
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li style="color: black">&copy; PJ1201 2015</li><li>
+							<li style="color: black">&copy; PJ2100 2015</li><li>
 						</ul>
 					</div>
 	
