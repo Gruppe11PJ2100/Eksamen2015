@@ -92,7 +92,7 @@
 
 			$sql2 = "SELECT email FROM $day WHERE email='$email';";
 			$res = mysqli_query($conn, $sql2);
-			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
+			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
 				$allready_ordered = false;
 			} else {
@@ -293,7 +293,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<img src="images/wact.png" height="200" width="200"/>
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
 									</center>
 								</header>
 								
