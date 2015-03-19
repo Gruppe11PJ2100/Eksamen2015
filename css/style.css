@@ -609,7 +609,7 @@
 	#footer
 	{
 		color: #ccc;
-		color: rgba(255,255,255,0.45);
+		color: #000000;
 	}
 
 		#footer a
@@ -635,6 +635,7 @@
 			#footer .copyright li
 			{
 				display: inline-block;
+				font
 			}
 
 				#footer .copyright li:before
