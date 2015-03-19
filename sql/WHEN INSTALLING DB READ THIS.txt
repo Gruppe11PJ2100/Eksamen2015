@@ -1,0 +1,5 @@
+First run the DATABASE_DUMP script
+
+then run the inserts man-friInsert
+
+and then run the Studenter script
