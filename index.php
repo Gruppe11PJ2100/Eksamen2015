@@ -83,8 +83,6 @@
 			/* Siden vi valkte å ha alle studentmailer i en database trenger vi ikke denne inserten.
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
-
-
 			if ($conn->query($sql) === TRUE) {
     			//echo "New record created successfully";
 			} else {
@@ -96,13 +94,10 @@
 			$res = mysqli_query($conn, $sql2);
 			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
-
 				$allready_ordered = false;
 				
 			} else {
-
 				$allready_ordered = true;
-				echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
 
 			}
 
@@ -110,11 +105,9 @@
 			$result3 = mysqli_query($conn, $sql3);
 
 			if(mysqli_num_rows($result3) == 1){
-
 				$invalid = false;
 
 			} else {
-
 				$invalid = true;
 
 			}
@@ -163,7 +156,7 @@
 
     					$id2 = $row["id"];
 
-    					if($prosjektor == "false"){
+    					if($prosjektor == "false"){ // If the small rooms are filled but not the bigger ones
 
     						if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
 
@@ -179,7 +172,7 @@
 								break;
     						}
 
-	    				} else {
+	    				} else { // If the small rooms are filled but not the bigger ones, and you need a prosjektor
 
 	    					if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match && $row["prosjektor"] == $prosjektor){
 
@@ -253,7 +246,7 @@ $mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br>Hvis du vil kansel
 							til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>" ;
 
 
-if(!$allready_ordered){
+if(!$allready_ordered && !$invalid && $found_a_match){
 
 	if(!$mail->send()) {
    	 	echo 'Message could not be sent.';
@@ -262,13 +255,14 @@ if(!$allready_ordered){
 		echo "Melding Sendt";
 }
 
-
-
 	header('Location: #confirm');  //Redirect to recipt
+
+} else {
+
+	echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
 
 }
 	
-
 } // curly bracket from the if submitt button.
 
 	
@@ -387,11 +381,9 @@ if(!$allready_ordered){
 
 										<div class="row.uniform ">
 											<div class="9u">
-
 												<input type="text" name="name" class="nameEmail" placeholder="Navn" required />
 												<input type="email" name="email" class="nameEmail" placeholder="Din Westerdals-epost" required />
 												&nbsp;
-
 												<div class="5u">
 													
 													<input type='submit' name='submit' value="Bekreft" /> 
@@ -465,17 +457,14 @@ if(!$allready_ordered){
 													echo "" . $_COOKIE["prosjektor"];
 												else 
 													echo "" . $prosjektor;
-
 												?>
 												</div>
-											
 										</div>
 										<div class="row">
 											<div class="6u"> 
 												<p>Epost sendt til: </p>
 												<?php echo "" . $_COOKIE["email"]; ?>
 												</div>
-
 										</div>
 										<div class="row">
 												</div>
