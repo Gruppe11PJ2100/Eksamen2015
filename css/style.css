@@ -231,12 +231,16 @@
     			border-color: #000;
 			}
 
+			.projectorTekst {
+				margin: 1.1em 0 0 -11em;
+			}
+
 			.projector-label {
 				display: inline-block;
 				height: 2em;
 				width: 2em;
 				border: 3px solid #000;
-				margin: 0 0 -1.1em -1.3em;
+				margin: 1em 0 -1.1em -1.3em;
 				text-align: center;
 				
 				-moz-transition: border-color .2s ease-in-out, background-color .2s ease-in-out;
@@ -247,8 +251,8 @@
 			}
 
 			.projector-label:hover {
-				border-color: #FFD066;
-				background-color: #FFD066;
+			background-color: #795580;
+    		border-color: #000;
 			}
 
 			.projector-label:before {

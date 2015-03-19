@@ -27,10 +27,10 @@
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav -->
+				<!-- Nav 
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
-					</nav>
+					</nav> -->
 
 				<!-- Main -->
 					<div id="main">
@@ -40,16 +40,18 @@
 							<div class="row.uniform ">
 								<div class="9u">
 									<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-										<h1>Avbestillings skjema, fyll inn.</h1><br>
-										Email:
-										<input type="email" name="email" placeholder="Elektronisk Mail" required/>
+										<h2>Avbestilling</h2>
 										<br>
-										Rom nr:
-										<input type="text" name="romID" required>
+									
+										<input type="email" name="email" placeholder="Westerdals-email" class="nameEmail" required/>
 										<br>
-										Hvilken dag:
-										<input type="text" name="day" required>
+										
+										<input type="text" name="romID" placeholder="Rom Nr." class="nameEmail" required>
 										<br>
+										
+										<input type="text" name="day"  placeholder="Dag" class="nameEmail" required>
+										<br>
+										
 										<input type="submit" name="submit" value="Submit"> 
 									</form>
 								</div>

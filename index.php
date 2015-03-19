@@ -345,22 +345,22 @@ if(!$allready_ordered){
         									<label for="friday" class="week-label">Fredag</label>		
         								</div>
 
+        								<!-- Prosjektor -->
+        								<div class="4u">
+										
+  											<input type="checkbox" name="prosjektor" id="projector" value="Yes." class="projector-input"> 
+  										 	<label for="projector" class="projector-label"></label>
+        								
+        								</div>
+
+        									<span class ="projectorTekst">Trenger dere prosjektor?</span>
+
 									</div>
 										
-									<!-- Prosjektor -->
+									<!-- Personalia -->
 									<h3>Hvem reserverer?</h3>
 									<div class="seperator yellow"></div>
-									<div class="fieldgroup">
-
-										<div class="4u">
- 										  Trenger dere prosjektor? 
- 										<p>
-  											<input type="checkbox" name="prosjektor" id="projector" value="true" class="projector-input"> 
-  										 	<label for="projector" class="projector-label"></label>
-        								<p>
-
-										</div>
-
+							
 										<div class="row.uniform ">
 											<div class="9u">
 
@@ -378,7 +378,6 @@ if(!$allready_ordered){
 
 										</div>
 
-									</div>
 								</section>
 							</article>
 						<!-- confirm -->
@@ -430,7 +429,7 @@ if(!$allready_ordered){
 											<div class="6u">
 												<h9> Prosjektor: </h9>
 												<?php echo "" . $_COOKIE["prosjektor"]; ?>
-												</div>
+											</div>
 											
 										</div>
 										<div class="row">
