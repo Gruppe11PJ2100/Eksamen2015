@@ -217,7 +217,7 @@ $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption
 $mail->Port = 465;                                      // TCP port to connect to
 $mail->From = 'gruppe11pj2100@gmail.com';
 $mail->FromName = 'Westerdals';
-$mail->addAddress($email, '$name');  // Add a recipient
+$mail->addAddress($email, $name);  // Add a recipient
 $mail->addAddress('gruppe11pj2100@gmail.com');               // Name is optional
 $mail->addReplyTo('gruppe11pj2100@gmail.com', 'Information');
 $mail->addCC('gruppe11pj2100@gmail.com');
