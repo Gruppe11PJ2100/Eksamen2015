@@ -240,9 +240,7 @@
 			}
 
 			.week-input:checked:hover + .week-label {
-				
-    			background-color: #795580;
-    			border-color: #000;
+    			cursor: default;
 			}
 
 			.projectorTekst {
