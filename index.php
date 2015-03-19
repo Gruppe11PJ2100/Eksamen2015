@@ -2,6 +2,7 @@
 
 <html>
 	<head>
+
 		<title>WOACT Romreservasjon</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -290,11 +291,17 @@ if(!$allready_ordered){
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
+<<<<<<< HEAD
 
 									<div class="mainNav">
 										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
 							 		</div>
 
+=======
+									<center>
+										<img src="images/wact.png" height="200" width="200" title="Tilbake til hovedmenyen"/>
+									</center>
+>>>>>>> 19d8c3079d074fcd5c08895f73710bb735b6e4be
 								</header>
 								
 								<section>
