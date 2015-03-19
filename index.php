@@ -285,7 +285,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<a href="main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
+										<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									</center>
 								</header>
 								
@@ -384,7 +384,7 @@ if(!$allready_ordered){
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-									<a href="main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
+									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									<h2>Kvittering</h2>
 								</header> <h6>  </h6>	
 									<div>
