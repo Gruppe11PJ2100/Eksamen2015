@@ -609,7 +609,6 @@ INSERT INTO email (email) VALUES ('kjojoa12@student.westerdals.no');
 INSERT INTO email (email) VALUES ('kjrsmu09@student.westerdals.no');
 INSERT INTO email (email) VALUES ('klajon10@student.westerdals.no');
 INSERT INTO email (email) VALUES ('klasin14@student.westerdals.no');
-INSERT INTO email (email) VALUES ('kleedv14@student.westerdals.no');
 INSERT INTO email (email) VALUES ('klemag13@student.westerdals.no');
 INSERT INTO email (email) VALUES ('klephi10@student.westerdals.no');
 INSERT INTO email (email) VALUES ('klikri13@student.westerdals.no');
