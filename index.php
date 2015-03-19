@@ -39,7 +39,7 @@
 		// define variables and set to empty values
 		$name = $email = $day = $id = $id2 = $amount = "";
 
-		$prosjektor = 'false';
+		$prosjektor = "false";
 
 		$perfect_match = null;
 		$found_a_match = false;
@@ -49,7 +49,8 @@
    			$email = test_input($_POST["email"]);
    			$selected_radio = $_POST["members"];
 			$day = test_input($_POST["day"]);
-			$prosjektor = $_POST["prosjektor"];
+			if(isset($_POST["prosjektor"]))
+				$prosjektor = test_input($_POST["prosjektor"]);
 
 		}
 
@@ -72,7 +73,12 @@
 			setcookie("day", $day, time() +  60 * 60 * 24, "/");
 			setcookie("prosjektor", $prosjektor, time() +  60 * 60 * 24, "/");
 
-			/*
+			if (!isset($_COOKIE["prosjektor"])){
+				setcookie("prosjektor", "false", time() + 60 * 60 * 24, "/");
+			} 
+
+
+			/* Siden vi valkte å ha alle studentmailer i en database trenger vi ikke denne inserten.
 			$sql = "INSERT INTO email
 				VALUES ('$email', '$name')";
 
@@ -86,7 +92,7 @@
 
 			$sql2 = "SELECT email FROM $day WHERE email='$email';";
 			$res = mysqli_query($conn, $sql2);
-			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
+			echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
 				$allready_ordered = false;
 			} else {
@@ -108,7 +114,7 @@
 
     				if($row["is_free"] == 'true' && $row["antall"] == $selected_radio && $row["prosjektor"] == $prosjektor){
 
-    					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id";
+    					$update = "UPDATE $day SET email='$email', is_free='false' where id=$id AND '$email' IN (SELECT email FROM email WHERE email='$email'); ";
 
     					if ($conn->query($update) === TRUE) {
     						//echo "New record created successfully perfect_match";
@@ -140,7 +146,7 @@
 
     						if($row["is_free"] == 'true' && $row["antall"] >= $selected_radio && !$perfect_match){
 
-    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2 AND '$email' IN (SELECT email FROM email WHERE email='$email'); ";
 
     							if ($conn->query($update2) === TRUE) {
     								//echo "<br>New record created successfully med et annet antall";
@@ -158,14 +164,14 @@
 
 	    						//echo "must have prosjektor";
 
-    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2";
+    							$update2 = "UPDATE $day SET email='$email', is_free='false' where id=$id2 AND '$email' IN(SELECT email FROM email WHERE email='$email'); ";
 
     							if ($conn->query($update2) === TRUE) {
     								//echo "<br>New record created successfully med prosjektor";
     								$found_a_match = true;
 
 								} else {
-    								//echo "Error: " . $update2 . "<br>" . $conn->error;
+    								echo "Error: " . $update2 . "<br>" . $conn->error;
 								}
 								break;
 	    					}
@@ -226,7 +232,8 @@ $mail->addBCC('gruppe11pj2100@gmail.com');
 $mail->isHTML(true);
 
 $mail->Subject = "Takk for din reservasjon " . $name;
-$mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br> Hvis du vil kanselere din reservasjon gå til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>";
+$mail->Body    = "" . $default . $dittrom1 . $dittrom2 . "<br>Hvis du vil kanselere din reservasjon gå 
+							til denne siden <a href=\"localhost/avbestilling.php\">avbestilling</a>" ;
 
 
 if(!$allready_ordered){
@@ -256,28 +263,29 @@ if(!$allready_ordered){
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav 
+				<!-- Nav -->
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					</nav> -->
+					</nav>
 
 				<!-- Main -->
 					<div id="main">
 						
 						<!-- Home -->
 							<article id="main" class="panel">
+								<center>
 								<header>
-									<center>
-										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
-										
-									</center>
+									<h1>Velkommen</h1>
+									<p>Rom reservasjon</p>
 								</header>
 								
-								<center>
-								<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
-								<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
-								</center>
+								
+								<a href="#Qreservation" class="jumplink pic">
+									<img src="images/logo.jpg" height="600" width="850" alt="" />
+									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
+									</center>
+								</a>
 								
 							</article>
 	
@@ -285,7 +293,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
+										<img src="images/wact.png" height="200" width="200"/>
 									</center>
 								</header>
 								
@@ -345,22 +353,22 @@ if(!$allready_ordered){
         									<label for="friday" class="week-label">Fredag</label>		
         								</div>
 
-        								<!-- Prosjektor -->
-        								<div class="4u">
-										
-  											<input type="checkbox" name="prosjektor" id="projector" value="Yes." class="projector-input"> 
-  										 	<label for="projector" class="projector-label"></label>
-        								
-        								</div>
-
-        									<span class ="projectorTekst">Trenger dere prosjektor?</span>
-
 									</div>
 										
-									<!-- Personalia -->
+									<!-- Prosjektor -->
 									<h3>Hvem reserverer?</h3>
 									<div class="seperator yellow"></div>
-							
+									<div class="fieldgroup">
+
+										<div class="4u">
+ 										  Trenger dere prosjektor? 
+ 										<p>
+  											<input type="checkbox" name="prosjektor" id="projector" value="true" class="projector-input"> 
+  										 	<label for="projector" class="projector-label"></label>
+        								<p>
+
+										</div>
+
 										<div class="row.uniform ">
 											<div class="9u">
 
@@ -378,12 +386,12 @@ if(!$allready_ordered){
 
 										</div>
 
+									</div>
 								</section>
 							</article>
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									<h2>Kvittering</h2>
 								</header> <h6>  </h6>	
 									<div>
@@ -428,8 +436,15 @@ if(!$allready_ordered){
 										<div class="row">
 											<div class="6u">
 												<h9> Prosjektor: </h9>
-												<?php echo "" . $_COOKIE["prosjektor"]; ?>
-											</div>
+												<?php 
+
+												if (isset($_COOKIE["prosjektor"])) 
+													echo "" . $_COOKIE["prosjektor"];
+												else 
+													echo "" . $prosjektor;
+
+												?>
+												</div>
 											
 										</div>
 										<div class="row">
@@ -440,7 +455,6 @@ if(!$allready_ordered){
 
 										</div>
 										<div class="row">
-											<div class="button">Tilbake</div>
 												</div>
 										</div>
 									</div>

@@ -1,11 +1,11 @@
 <?php
 require 'config.php';
 
-$sql = "UPDATE mon SET reserved_email='', is_free='true';";
-$sql1 = "UPDATE tue SET reserved_email='', is_free='true';";
-$sql2 = "UPDATE wed SET reserved_email='', is_free='true';";
-$sql3 = "UPDATE thu SET reserved_email='', is_free='true';";
-$sql4 = "UPDATE fri SET reserved_email='', is_free='true';";
+$sql = "UPDATE Mandag SET email='', is_free='true';";
+$sql1 = "UPDATE Tirsdag SET email='', is_free='true';";
+$sql2 = "UPDATE Onsdag SET email='', is_free='true';";
+$sql3 = "UPDATE Torsdag SET email='', is_free='true';";
+$sql4 = "UPDATE Fredag SET email='', is_free='true';";
 
 $conn->query($sql1);
 $conn->query($sql2);
