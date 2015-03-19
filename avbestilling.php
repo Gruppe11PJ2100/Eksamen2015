@@ -52,7 +52,7 @@
 										<input type="text" name="day"  placeholder="Dag" class="nameEmail" required>
 										<br>
 										
-										<input type="submit" name="submit" value="Submit"> 
+										<input type="submit" name="submit" value="Bekreft"> 
 									</form>
 								</div>
 							</div>
