@@ -38,7 +38,7 @@
 			pollOnce: true,
 			breakpoints: {
 				'global':	{ range: '*', href: 'css/style.css' },
-				'desktop':	{ range: '737-', href: 'css/style-desktop.css', containers: 1200, grid: { gutters: 25 }, viewport: { width: 1080, scalable: false } },
+				'desktop':	{ range: '737-', href: 'css/style-desktop.css', containers: 1200, grid: { gutters: 25 }, viewport: { width: 1080, scalable: true } },
 				'mobile':	{ range: '-736', href: 'css/style-mobile.css', containers: '100%!', grid: { collapse: true, gutters: 15 }, viewport: { scalable: false } }
 			}
 		});
@@ -86,7 +86,7 @@
 
 					$body._reposition = function() {
 						if (skel.vars.isTouch && (window.orientation == 0 || window.orientation == 180))
-							$wrapper.css('padding-top', Math.max((($window.height() - (panels[activePanelId].outerHeight() + $footer.outerHeight())) / 2) - $nav.height(), 30) + 'px');
+							$wrapper.css(Math.max((($win(panels[activePanelId].outerHeight() + $footer.outerHeight())) / 2) - $nav.height(), 30) + 'px');
 						else
 							$wrapper.css('padding-top', ((($window.height() - panels[firstPanelId].height()) / 2) - $nav.height()) + 'px');
 					};

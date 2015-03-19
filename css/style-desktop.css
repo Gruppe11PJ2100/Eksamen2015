@@ -102,6 +102,7 @@
 	#wrapper
 	{
 		padding-top: 40px !important;
+		padding-bottom: auto;
 		width: 45em !important;
 		margin: 0 auto;
 		opacity: 0.00001;
