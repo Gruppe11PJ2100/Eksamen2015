@@ -291,17 +291,11 @@ if(!$allready_ordered){
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-<<<<<<< HEAD
 
 									<div class="mainNav">
 										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
 							 		</div>
 
-=======
-									<center>
-										<img src="images/wact.png" height="200" width="200" title="Tilbake til hovedmenyen"/>
-									</center>
->>>>>>> 19d8c3079d074fcd5c08895f73710bb735b6e4be
 								</header>
 								
 								<section>
@@ -399,12 +393,11 @@ if(!$allready_ordered){
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-<<<<<<< HEAD
+
 									<div class="mainNav">
 										<a href="index.php" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" title="Tilbake til hovedmenyen"/></a>
 							 		</div>
-=======
->>>>>>> origin/master
+
 									<h2>Kvittering</h2>
 								</header> 
 
@@ -450,12 +443,8 @@ if(!$allready_ordered){
 										</div>
 										<div class="row">
 											<div class="6u">
-<<<<<<< HEAD
+
 												<p> Prosjektor: </p>
-												<?php echo "" . $_COOKIE["prosjektor"]; ?>
-											</div>
-=======
-												<h9> Prosjektor: </h9>
 												<?php 
 
 												if (isset($_COOKIE["prosjektor"])) 
@@ -465,7 +454,6 @@ if(!$allready_ordered){
 
 												?>
 												</div>
->>>>>>> origin/master
 											
 										</div>
 										<div class="row">
