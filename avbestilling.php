@@ -61,7 +61,7 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; PJ1201 2015</li><li>
+							<li>&copy; PJ2100 2015</li><li>
 						</ul>
 					</div>
 	
