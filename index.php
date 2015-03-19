@@ -256,11 +256,11 @@ if(!$allready_ordered){
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav -->
+				<!-- Nav 
 					<nav id="nav">
 						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					</nav>
+					</nav> -->
 
 				<!-- Main -->
 					<div id="main">
@@ -275,8 +275,8 @@ if(!$allready_ordered){
 								
 								
 								<a href="#Qreservation" class="jumplink pic">
-									<img src="images/logo.jpg" height="600" width="850" alt="" />
-									<span class="arrow icon fa-chevron-right"><span> Hurtig Reservasjon</span>
+									<img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" />
+									<div class ="button"> Hurtigreservasjon</div>
 									</center>
 								</a>
 								
@@ -286,7 +286,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<img src="images/wact.png" height="200" width="200"/>
+										<a href="#" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
 									</center>
 								</header>
 								
