@@ -2,6 +2,7 @@
 
 <html>
 	<head>
+
 		<title>WOACT Romreservasjon</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -293,7 +294,7 @@ if(!$allready_ordered){
 							<article id="Qreservation" class="panel">
 								<header>
 									<center>
-										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200" title="Tilbake til hovedmenyen" alt="" />
 									</center>
 								</header>
 								
