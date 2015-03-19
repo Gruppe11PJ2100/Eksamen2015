@@ -96,17 +96,27 @@
 			$res = mysqli_query($conn, $sql2);
 			//echo "" . $sql2 ."    ------    ". mysqli_num_rows($res);
 			if(mysqli_num_rows($res) < 1){
+
 				$allready_ordered = false;
+				
 			} else {
+
 				$allready_ordered = true;
+				echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
+
 			}
 
 			$sql3 = "SELECT email FROM email WHERE email='$email'";
 			$result3 = mysqli_query($conn, $sql3);
+
 			if(mysqli_num_rows($result3) == 1){
+
 				$invalid = false;
+
 			} else {
+
 				$invalid = true;
+
 			}
 
 			//echo "invalid: " . $invalid;
@@ -133,7 +143,9 @@
 						} else {
     						//echo "Error: " . $update . "<br>" . $conn->error;
 						}
+
 						break;
+
     				} else  {
     					$perfect_match = false;
     				}
@@ -190,7 +202,7 @@
     				}
     			}
 			} else {
- 		  		 echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
+ 		  		 //echo '<script type="text/javascript">alert("Ops noe gikk galt under reservasjonen, Feil Email eller Allerede bestillt i dag");</script>';
  			}
 
 // START mailing part of the script
@@ -203,8 +215,6 @@ if($perfect_match && $found_a_match){
 		setcookie("id", $id, time() +  60 * 60 * 24, "/");
 		setcookie("perfect_match", true, time() +  60 * 60 * 24, "/");
 
-
-
 	} else if(!$perfect_match && $found_a_match){
 
 		$dittrom2 = "Ditt rom: " . $id2 . " er reservert på " . $day . "<br>";
@@ -213,10 +223,8 @@ if($perfect_match && $found_a_match){
 
 	} else {
 
-		$default = "Ingen ledige rom denne dagen med deres spesifikasjoner beklager.<br>";
+		$default = "Ingen ledige rom denne dagen med deres spesifikasjoner beklager. RESERVASJON BLE IKKE FULLFØRT<br>";
 }
-
-
 
 
 require 'PHPMailer5/PHPMailerAutoload.php';
@@ -364,7 +372,7 @@ if(!$allready_ordered){
 
         								<div class="4u">
 										
-  											<input type="checkbox" name="prosjektor" id="projector" value="Yes." class="projector-input"> 
+  											<input type="checkbox" name="prosjektor" id="projector" value="true" class="projector-input"> 
   										 	<label for="projector" class="projector-label"></label>
         								
         								</div>
@@ -435,7 +443,7 @@ if(!$allready_ordered){
 														echo "" . $_COOKIE["id2"];
 
 												} else {
-													echo "Ingen ledige rom denne dagen med deres spesifikasjoner beklager";
+													echo "Ingen ledige rom denne dagen med deres spesifikasjoner beklager. RESERVASJON BLE IKKE FULLFØRT.";
 												}
 
 												 ?>
