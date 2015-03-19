@@ -264,11 +264,11 @@ if(!$allready_ordered){
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav -->
+				<!-- Nav 
 					<nav id="nav">
 						<a href="#home" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
-					</nav>
+					</nav>-->
 
 				<!-- Main -->
 					<div id="main">
@@ -281,7 +281,7 @@ if(!$allready_ordered){
 							 		</div>
 								</header>
 								
-								<div class="mainNav">
+								<div class="mainNav buttons">
 									<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
 									<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
 								</div>
