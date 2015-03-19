@@ -106,7 +106,7 @@
 		clear: both;
 	}
 	
-	p, ul, ol, dl, table, blockquote, form
+	ul, ol, dl, table, blockquote, form
 	{
 		margin-bottom: 2em;
 	}
@@ -149,6 +149,10 @@
 		form
 		{
 		}
+
+			.mainNav {
+				text-align: center;
+			}
 		
 			.member-label {
 				text-align: center;

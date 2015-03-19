@@ -258,7 +258,7 @@ if(!$allready_ordered){
 				
 				<!-- Nav 
 					<nav id="nav">
-						<a href="#main" class="icon fa-home active"><span>Hjem</span></a>
+						<a href="#home" class="icon fa-home active"><span>Hjem</span></a>
 						<a href="#Qreservation" class="icon fa-cubes"><span> Hurting Reservasjon</span></a>
 					</nav> -->
 
@@ -266,27 +266,26 @@ if(!$allready_ordered){
 					<div id="main">
 						
 						<!-- Home -->
-							<article id="main" class="panel">
+							<article id="home" class="panel">
 								<header>
-									<center>
-										<img src="images/WACT_svart_rgb.svg" height="200" width="200"/>
-										
-									</center>
+									<div class="mainNav">
+										<img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo">
+							 		</div>
 								</header>
 								
-								<center>
+								<div class="mainNav">
 								<a href="#Qreservation" class="jumplink"><div class ="button"> Hurtigreservasjon </div></a>
 								<a href="avbestilling.php" class="jumplink"><div class ="button buttonRed"> Avbestilling </div></a>
-								</center>
+								</div>
 								
 							</article>
 	
 						<!-- reservation --> 
 							<article id="Qreservation" class="panel">
 								<header>
-									<center>
-										<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
-									</center>
+									<div class="mainNav">
+										<a href="#home" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo"></a>
+							 		</div>
 								</header>
 								
 								<section>
@@ -383,26 +382,30 @@ if(!$allready_ordered){
 						<!-- confirm -->
 							<article id="confirm" class="panel">
 								<header>
-									<a href="#main" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo" /></a>
+									<div class="mainNav">
+										<a href="index.php" class="jumplink pic"><img src="images/WACT_svart_rgb.svg" height="200" width="200" alt="Westerdals Logo"></a>
+							 		</div>
 									<h2>Kvittering</h2>
-								</header> <h6>  </h6>	
+								</header> 
+
+
 									<div>
 
 										<div class="row">
 											<div class="6u"> 
-												<h9> Navn: </h9>
+												<p> Navn: </p>
 												<?php echo "" . $_COOKIE["name"]; ?>
 												</div>
 											</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Medlemmer: </h9>
+												<p> Medlemmer: </p>
 												<?php echo "" . $_COOKIE["members"]; ?>
 												</div>
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9> Rom nr: </h9>
+												<p> Rom nr: </p>
 												<?php 
 												if($_COOKIE["perfect_match"] == true){
 
@@ -421,20 +424,20 @@ if(!$allready_ordered){
 											</div>
 										<div class="row">
 										<div class="6u">
-												<h9> Hvilke dager: </h9>
+												<p> Hvilke dager: </p>
 												<?php echo "" .$_COOKIE["day"]; ?>
 											</div>
 										</div>
 										<div class="row">
 											<div class="6u">
-												<h9> Prosjektor: </h9>
+												<p> Prosjektor: </p>
 												<?php echo "" . $_COOKIE["prosjektor"]; ?>
 											</div>
 											
 										</div>
 										<div class="row">
 											<div class="6u"> 
-												<h9>Epost sendt til: </h9>
+												<p>Epost sendt til: </p>
 												<?php echo "" . $_COOKIE["email"]; ?>
 												</div>
 
